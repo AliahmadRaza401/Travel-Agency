@@ -44,6 +44,7 @@ dependencies:
   email_validator: ^2.1.17
   loading_overlay: ^0.3.0
   persistent_bottom_nav_bar_v2: ^5.2.3
+  # flutter_avif: ^2.3.0
 
 
 dev_dependencies:

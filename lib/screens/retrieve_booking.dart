@@ -1,4 +1,3 @@
-import 'package:travel_agency/widgets/custom_app_bar.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class RetrieveBooking extends StatelessWidget {
@@ -63,13 +62,13 @@ class RetrieveBooking extends StatelessWidget {
                         hintText: "Name", border: InputBorder.none),
                   ),
                 ),
-                const Spacer(),
+                Spacer(),
                 PrimaryButton(
                   width: .9,
                   text: "Submit",
                   function: () {},
                 ),
-                heightBox(.1),
+                heightBox(.02),
               ],
             ),
           ),

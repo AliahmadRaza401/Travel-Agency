@@ -1,70 +1,60 @@
-import 'package:travel_agency/widgets/widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:travel_agency/screens/bottom_nav_controller.dart';
+import 'package:travel_agency/utils/colors.dart';
+import 'package:travel_agency/utils/dynamic_sizes.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({super.key});
+  final NavigationController navigationController =
+      Get.put(NavigationController());
+
+  BottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      return PersistentTabView(
-        navBarHeight: kHeight(.08),
-        tabs: [
-          PersistentTabConfig(
-            screen: const HomeScreen(),
-            item: ItemConfig(
-              icon: Image.asset(
-                "assets/images/Vector.png",
-                color: KColors.kPrimary,
-              ),
-              title: "Home",
+    return Obx(() => BottomNavigationBar(
+          currentIndex: navigationController.selectedIndex.value,
+          onTap: navigationController.changePage,
+          type: BottomNavigationBarType.fixed,
+          landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
+          elevation: 0,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          backgroundColor: KColors.kWhite,
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset("assets/images/icon1.png",
+                  height: kHeight(.04),
+                  color: navigationController.selectedIndex.value == 0
+                      ? KColors.kPrimary
+                      : Colors.grey),
+              label: '',
             ),
-          ),
-          PersistentTabConfig(
-            screen: const BlogPage(),
-            item: ItemConfig(
-              icon: Image.asset(
-                "assets/images/book-saved.png",
-                color: KColors.kPrimary,
-              ),
-              title: "Messages",
+            BottomNavigationBarItem(
+              icon: Image.asset("assets/images/icon2.png",
+                  height: kHeight(.04),
+                  color: navigationController.selectedIndex.value == 1
+                      ? KColors.kPrimary
+                      : Colors.grey),
+              label: '',
             ),
-          ),
-          PersistentTabConfig(
-            screen: const RetrieveBooking(),
-            item: ItemConfig(
-              icon: Image.asset(
-                "assets/images/security-user.png",
-                color: KColors.kPrimary,
-              ),
-              title: "Settings",
+            BottomNavigationBarItem(
+              icon: Image.asset("assets/images/icon3.png",
+                  height: kHeight(.04),
+                  color: navigationController.selectedIndex.value == 2
+                      ? KColors.kPrimary
+                      : Colors.grey),
+              label: '',
             ),
-          ),
-          PersistentTabConfig(
-            screen: const MyBooking(),
-            item: ItemConfig(
-              icon: Image.asset(
-                "assets/images/setting.png",
-                color: KColors.kPrimary,
-              ),
-              title: "Settings",
+            BottomNavigationBarItem(
+              icon: Image.asset("assets/images/icon4.png",
+                  height: kHeight(.04),
+                  color: navigationController.selectedIndex.value == 3
+                      ? KColors.kPrimary
+                      : Colors.grey),
+              label: '',
             ),
-          ),
-        ],
-        navBarBuilder: (navBarConfig) => Style5BottomNavBar(
-          navBarDecoration: NavBarDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: KColors.kGrey.withOpacity(.5),
-                    blurRadius: 5,
-                    offset: const Offset(1, 1))
-              ],
-              borderRadius:
-                  BorderRadius.vertical(top: Radius.circular(kWidth(.05))),
-              padding: EdgeInsets.symmetric(
-                  vertical: kHeight(.015), horizontal: kWidth(.1))),
-          navBarConfig: navBarConfig,
-        ),
-      );
-    });
+          ],
+        ));
   }
 }

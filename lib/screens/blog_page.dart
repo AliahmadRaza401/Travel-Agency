@@ -1,8 +1,13 @@
-import 'package:travel_agency/widgets/custom_app_bar.dart';
+import 'package:travel_agency/screens/home_screen_controller.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
+import 'home_screen_modal.dart';
+
 class BlogPage extends StatelessWidget {
-  const BlogPage({super.key});
+  final HomeScreenController homeScreenController =
+      Get.put(HomeScreenController());
+  BlogPage({super.key});
+  Cities? data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -22,60 +27,65 @@ class BlogPage extends StatelessWidget {
                 Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(kWidth(.03)),
-                      child: Image.asset(
-                        "assets/images/citydetails.png",
+                      borderRadius: BorderRadius.circular(kWidth(.04)),
+                      child: Image.network(
+                        data?.image ?? "",
                         height: kHeight(.35),
                         width: kWidth(.9),
                         fit: BoxFit.fill,
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.only(top: kHeight(.22), left: kWidth(.08)),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                  text: "Rome",
-                                  textStyle: KTextStyles().normal(
-                                      textColor: KColors.kWhite,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600)),
-                              heightBox(.005),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.location_on_outlined,
-                                    color: KColors.kWhite,
-                                  ),
-                                  CustomText(
-                                      text: "Italy, Europe",
-                                      textStyle: KTextStyles().normal(
-                                          textColor: KColors.kWhite,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500)),
-                                ],
-                              ),
-                            ],
-                          ),
-                          widthBox(.35),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.share,
-                                color: KColors.kWhite,
-                              ),
-                              widthBox(.01),
-                              const Icon(
-                                Icons.favorite_outline,
-                                color: KColors.kWhite,
-                              )
-                            ],
-                          )
-                        ],
+                      padding: EdgeInsets.only(
+                        top: kHeight(.26),
+                        left: kWidth(.08),
+                      ),
+                      child: SizedBox(
+                        width: kWidth(.7),
+                        child: Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                    text: data?.title ?? "",
+                                    textStyle: KTextStyles().normal(
+                                        textColor: KColors.kWhite,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600)),
+                                heightBox(.005),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: KColors.kWhite,
+                                    ),
+                                    CustomText(
+                                        text: data?.city ?? "",
+                                        textStyle: KTextStyles().normal(
+                                            textColor: KColors.kWhite,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.share,
+                                  color: KColors.kWhite,
+                                ),
+                                widthBox(.01),
+                                const Icon(
+                                  Icons.favorite_outline,
+                                  color: KColors.kWhite,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -130,10 +140,14 @@ class BlogPage extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return const Center(child: Gallerybox());
+                        return Center(
+                            child: Gallerybox(
+                          images: data?.gallery ?? [],
+                          index: index,
+                        ));
                       },
                       separatorBuilder: (context, index) => widthBox(.02),
-                      itemCount: 3),
+                      itemCount: data?.gallery.length ?? 0),
                 ),
                 heightBox(.02),
                 CustomText(
@@ -157,17 +171,24 @@ class BlogPage extends StatelessWidget {
 }
 
 class Gallerybox extends StatelessWidget {
+  final List images;
+  final int index;
   const Gallerybox({
     super.key,
+    required this.index,
+    required this.images,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/city.png",
-      height: kHeight(.12),
-      width: kWidth(.28),
-      fit: BoxFit.fill,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(kWidth(.04)),
+      child: Image.network(
+        images[index],
+        height: kHeight(.12),
+        width: kWidth(.28),
+        fit: BoxFit.fill,
+      ),
     );
   }
 }
