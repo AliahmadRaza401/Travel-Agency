@@ -1,5 +1,6 @@
 import 'package:travel_agency/screens/bottom_nav_bar.dart';
 import 'package:travel_agency/screens/bottom_nav_controller.dart';
+import 'package:travel_agency/screens/chatscreen/view/chat_screen.dart';
 
 import '../widgets/widgets_imports.dart';
 
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   final List<Widget> _screens = [
     HomeScreen(),
     RetrieveBooking(),
-    BlogPage(),
+    ChatPage(),
     const MyBooking(),
   ];
 
