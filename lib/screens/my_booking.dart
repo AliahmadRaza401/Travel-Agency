@@ -150,7 +150,9 @@ class MyBooking extends StatelessWidget {
                   PrimaryButton(
                     width: .6,
                     text: "Download Document",
-                    function: () {},
+                    function: () {
+                      Get.toNamed("/bookings");
+                    },
                   )
                 ],
               ),

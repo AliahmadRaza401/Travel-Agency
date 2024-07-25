@@ -6,7 +6,7 @@ class PrimaryButton extends StatelessWidget {
   final double width;
   final double height;
   final double borderRadius;
-  final Color color;
+  final Color color, textcolor;
   final EdgeInsets padding;
 
   const PrimaryButton({
@@ -18,6 +18,7 @@ class PrimaryButton extends StatelessWidget {
     this.height = .054,
     this.borderRadius = .03,
     this.padding = EdgeInsets.zero,
+    this.textcolor = KColors.kWhite,
   });
 
   @override
@@ -37,7 +38,9 @@ class PrimaryButton extends StatelessWidget {
         child: Center(
           child: CustomText(
             text: text,
-            textStyle: KTextStyles().buttonStyle(),
+            textStyle: KTextStyles().buttonStyle(
+              textColor: textcolor,
+            ),
           ),
         ),
       ),
@@ -97,7 +100,7 @@ class IconTextButton extends StatelessWidget {
   final double width;
   final double height;
   final double borderRadius;
-  final Color color;
+  final Color color, iconcolor, textcolor, bgcolor;
   final double elevation;
   final EdgeInsets padding;
 
@@ -112,6 +115,9 @@ class IconTextButton extends StatelessWidget {
     this.borderRadius = .054,
     this.elevation = 0,
     this.padding = EdgeInsets.zero,
+    this.iconcolor = KColors.kWhite,
+    this.textcolor = KColors.kBlack,
+    this.bgcolor = KColors.kPrimary,
   });
 
   @override
@@ -132,11 +138,84 @@ class IconTextButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon),
+              CircleAvatar(
+                backgroundColor: bgcolor,
+                radius: kHeight(.015),
+                child: Icon(
+                  icon,
+                  color: iconcolor,
+                ),
+              ),
               widthBox(.02),
               CustomText(
                 text: text,
-                textStyle: KTextStyles().buttonStyle(),
+                textStyle: KTextStyles().buttonStyle(textColor: textcolor),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class IconTextButton2 extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final VoidCallback function;
+  final double width;
+  final double height;
+  final double borderRadius;
+  final Color color, textcolor, iconcolor, bgcolor;
+  final double elevation;
+  final EdgeInsets padding;
+
+  const IconTextButton2({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.function,
+    this.color = KColors.kPrimary,
+    this.width = .5,
+    this.height = .054,
+    this.borderRadius = .054,
+    this.elevation = 0,
+    this.padding = EdgeInsets.zero,
+    this.textcolor = KColors.kWhite,
+    this.iconcolor = KColors.kPrimary,
+    this.bgcolor = KColors.kWhite,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: function,
+      child: Container(
+        height: kHeight(height),
+        width: kWidth(width),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(
+            Radius.circular(kWidth(borderRadius)),
+          ),
+        ),
+        padding: padding,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                text: text,
+                textStyle: KTextStyles().buttonStyle(textColor: textcolor),
+              ),
+              widthBox(.02),
+              CircleAvatar(
+                backgroundColor: bgcolor,
+                radius: kHeight(.015),
+                child: Icon(
+                  icon,
+                  color: iconcolor,
+                ),
               ),
             ],
           ),

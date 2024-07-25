@@ -3,6 +3,7 @@ import '../widgets/widgets_imports.dart';
 class KColors {
   static const kPrimary = Color(0xff78D6C7);
   static const kWhite = Color(0xffffffff);
+  static const kBlue = Color(0xfff22313f);
   static const kBlack = Color(0xff000000);
   static const kGrey = Color(0xff838383);
   static const kRed = Color(0xffd70a0a);

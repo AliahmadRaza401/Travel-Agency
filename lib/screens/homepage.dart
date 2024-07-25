@@ -11,13 +11,18 @@ class HomePage extends StatelessWidget {
     HomeScreen(),
     RetrieveBooking(),
     BlogPage(),
-    MyBooking(),
+    const MyBooking(),
   ];
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() => _screens[navigationController.selectedIndex.value]),
+      body: SizedBox(
+          height: context.height,
+          width: context.width,
+          child: Obx(() => _screens[navigationController.selectedIndex.value])),
       bottomNavigationBar: BottomNavBar(),
     );
   }

@@ -7,7 +7,7 @@ class BlogPage extends StatelessWidget {
   final HomeScreenController homeScreenController =
       Get.put(HomeScreenController());
   BlogPage({super.key});
-  Cities? data = Get.arguments;
+  final Cities? data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class BlogPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Row(
                               children: [
                                 const Icon(

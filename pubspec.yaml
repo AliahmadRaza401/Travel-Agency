@@ -44,6 +44,16 @@ dependencies:
   email_validator: ^2.1.17
   loading_overlay: ^0.3.0
   persistent_bottom_nav_bar_v2: ^5.2.3
+  ticket_widget: ^1.0.2
+  dotted_line: ^3.2.2
+  ticket_clippers: ^0.0.8
+  book_my_seat: ^1.0.1
+  table_calendar: ^3.0.0
+  calendar_date_picker2: ^1.1.5
+  flutter_rating_bar: ^4.0.1
+  pinput: ^3.0.1
+ 
+
   # flutter_avif: ^2.3.0
 
 

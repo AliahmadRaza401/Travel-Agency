@@ -6,6 +6,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final HomeScreenController homeScreenController =
       Get.put(HomeScreenController());
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(kWidth(.04))),
                   child: TextField(
                     cursorErrorColor: KColors.kGrey,
-                    controller: TextEditingController(),
+                    controller: searchController,
                     style: const TextStyle(color: KColors.kGrey),
                     cursorColor: KColors.kGrey,
                     decoration: InputDecoration(
@@ -53,39 +54,33 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 heightBox(.02),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed("/blogpage");
-                  },
-                  child: CustomText(
-                      text: "Categories",
-                      textStyle: KTextStyles()
-                          .normal(fontSize: 16, fontWeight: FontWeight.w600)),
-                ),
+                CustomText(
+                    text: "Categories",
+                    textStyle: KTextStyles()
+                        .normal(fontSize: 16, fontWeight: FontWeight.w600)),
                 heightBox(.02),
                 SizedBox(
-                  height: kHeight(.14),
+                  height: kHeight(.1),
                   width: kWidth(1),
                   child: ListView.separated(
                       padding: const EdgeInsets.all(0),
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return const CategoryBox();
+                        return GestureDetector(
+                            onTap: () {
+                              Get.toNamed("/flightshome");
+                            },
+                            child: const CategoryBox());
                       },
                       separatorBuilder: (context, index) => widthBox(.03),
                       itemCount: 8),
                 ),
                 heightBox(.02),
-                GestureDetector(
-                  onTap: () {
-                    Get.toNamed("/retrievebooking");
-                  },
-                  child: CustomText(
-                      text: "Cities",
-                      textStyle: KTextStyles()
-                          .normal(fontSize: 16, fontWeight: FontWeight.w600)),
-                ),
+                CustomText(
+                    text: "Cities",
+                    textStyle: KTextStyles()
+                        .normal(fontSize: 16, fontWeight: FontWeight.w600)),
                 heightBox(.02),
                 Obx(() {
                   return GridView.builder(
@@ -131,10 +126,10 @@ class HomeCityBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // print(controller.travellingList[index]);
         Get.toNamed("/blogpage", arguments: controller.travellingList[index]);
       },
       child: Container(
+        height: context.height,
         width: kWidth(.42),
         decoration: BoxDecoration(
             boxShadow: [
@@ -212,24 +207,31 @@ class CategoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: KColors.kWhite,
-            radius: kHeight(.04),
+    return Column(
+      children: [
+        Container(
+          height: kHeight(.06),
+          width: kWidth(.15),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(color: KColors.kGrey.withOpacity(.2), blurRadius: 5)
+            ],
+            color: KColors.kWhite,
+            shape: BoxShape.circle,
+          ),
+          child: Center(
             child: Image.asset(
-              "assets/images/Group.png",
-              height: kHeight(.04),
+              "assets/images/flights.png",
+              height: kHeight(.03),
             ),
           ),
-          heightBox(.01),
-          CustomText(
-              text: "Hotels",
-              textStyle: KTextStyles()
-                  .normal(fontSize: 12, fontWeight: FontWeight.w600))
-        ],
-      ),
+        ),
+        heightBox(.01),
+        CustomText(
+            text: "Flights",
+            textStyle:
+                KTextStyles().normal(fontSize: 12, fontWeight: FontWeight.w600))
+      ],
     );
   }
 }

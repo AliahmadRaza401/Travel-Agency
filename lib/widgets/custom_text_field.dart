@@ -55,8 +55,11 @@ class CustomTextField extends StatelessWidget {
     return Obx(() {
       return Container(
         decoration: BoxDecoration(
+            border: Border.all(color: KColors.kTextColor.withOpacity(.2)),
             borderRadius: BorderRadius.circular(kWidth(0.02)),
-            color: KColors.kGrey.withOpacity(.1)),
+            color: KColors.kWhite),
+        padding: EdgeInsets.symmetric(
+            horizontal: kWidth(.04), vertical: kWidth(.02)),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           enabled: enable,
@@ -108,67 +111,51 @@ class CustomTextField extends StatelessWidget {
                   ),
           ],
           style: TextStyle(
-            color: themeColor,
+            color: KColors.kBlack,
+            fontWeight: FontWeight.bold,
             fontSize: kWidth(.04),
           ),
           validator: function,
           decoration: InputDecoration(
-            suffixIcon: hasSuffix
-                ? InkWell(
-                    onTap: isPassword
-                        ? () {
-                            obscureText.value = !obscureText.value;
-                          }
-                        : suffixIconFunction,
-                    child: isPassword
-                        ? obscureText.value
-                            ? Icon(
-                                CupertinoIcons.eye,
-                                color: suffixIconColor,
-                                size: kWidth(suffixIconSize),
-                              )
-                            : Icon(
-                                CupertinoIcons.eye_slash,
-                                color: suffixIconColor,
-                                size: kWidth(suffixIconSize),
-                              )
-                        : suffixIcon,
-                  )
-                : null,
-            isDense: true,
-            prefixIcon: hasPrefix
-                ? InkWell(
-                    onTap: prefixIconFunction,
-                    child: prefixIcon,
-                  )
-                : null,
-            label: Text(label),
-            labelStyle: TextStyle(color: themeColor),
-            hintText: hintText,
-            hintStyle: TextStyle(color: themeColor.withOpacity(.4)),
-            disabledBorder: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(kWidth(.04)),
-              borderSide: const BorderSide(
-                width: 2,
-                color: KColors.kWhite,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(kWidth(.04)),
-              borderSide: BorderSide(
-                width: 2,
-                color: themeColor,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(kWidth(.04)),
-              borderSide: BorderSide(
-                width: 2,
-                color: themeColor,
-              ),
-            ),
-          ),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: hasSuffix
+                  ? InkWell(
+                      onTap: isPassword
+                          ? () {
+                              obscureText.value = !obscureText.value;
+                            }
+                          : suffixIconFunction,
+                      child: isPassword
+                          ? obscureText.value
+                              ? Icon(
+                                  CupertinoIcons.eye,
+                                  color: suffixIconColor,
+                                  size: kWidth(suffixIconSize),
+                                )
+                              : Icon(
+                                  CupertinoIcons.eye_slash,
+                                  color: suffixIconColor,
+                                  size: kWidth(suffixIconSize),
+                                )
+                          : suffixIcon,
+                    )
+                  : null,
+              isDense: true,
+              prefixIcon: hasPrefix
+                  ? InkWell(
+                      onTap: prefixIconFunction,
+                      child: prefixIcon,
+                    )
+                  : null,
+              label: Text(label),
+              labelStyle: TextStyle(color: themeColor),
+              hintText: hintText,
+              hintStyle:
+                  const TextStyle(color: KColors.kBlack, fontWeight: FontWeight.bold),
+              disabledBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              border: InputBorder.none),
         ),
       );
     });
