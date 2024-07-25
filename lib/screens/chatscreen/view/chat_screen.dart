@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:travel_agency/screens/chatscreen/App_SizedBox.dart';
 import 'package:travel_agency/utils/AppText.dart';
 import 'package:travel_agency/utils/AppTextField.dart';
+import 'package:travel_agency/utils/app_loader.dart';
 import 'package:travel_agency/utils/colors.dart';
 
 import '../controller/chat_controller.dart';
@@ -22,44 +23,18 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  // final scaffoldKey = GlobalKey<ScaffoldState>();
-  // ChatController chatController = Get.put(ChatController());
   final TextEditingController _controller = TextEditingController();
   final List<Message> _messages = [];
   final ChatService _chatService = ChatService();
   bool _isLoading = false;
-  int _messageCount = 0;
-  int? _loadingMessageIndex;
+  ScrollController _scrollController = ScrollController();
 
-  // void _sendMessage() async {
-  //   // if (widget.isSkip = true && _messageCount > 2) {
-  //   //   customSnackBar(title: "Please Login to use more");
-  //   //   return;
-  //   // }
-  //   if (_controller.text.isEmpty) return;
-  //   setState(() {
-  //     _messages.add(Message(role: "user", content: _controller.text));
-  //     _isLoading = true;
-  //     _messageCount++;
-  //   });
-  //   final response = await _chatService.request(_controller.text);
-  //   setState(() {
-  //     if (response != null) {
-  //       _messages.add(Message(role: "system", content: response));
-  //     }
-  //     _isLoading = false;
-  //   });
-  //
-  //   _controller.clear();
-  // }
   void _sendMessage() async {
     if (_controller.text.isEmpty) return;
 
-    final messageIndex = _messages.length;
     setState(() {
       _messages.add(Message(role: "user", content: _controller.text));
       _isLoading = true;
-      _loadingMessageIndex = messageIndex;
     });
 
     final response = await _chatService.request(_controller.text);
@@ -68,81 +43,59 @@ class _ChatPageState extends State<ChatPage> {
         _messages.add(Message(role: "system", content: response));
       }
       _isLoading = false;
-      _loadingMessageIndex = null;
     });
 
     _controller.clear();
+    _scrollToBottom();
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    // if(!widget.isSkip){
-    // }
+    // Additional initialization if needed
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: scaffoldKey,
-      // drawer: CustomDrawer(),
-      // backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
-          // PrimaryAppBar(
-          //   titleText: 'Lenny',
-          //   appbarColor: AppColors.backgroundColor,
-          //   isPrefix: true,
-          //   isSuffix: false,
-          //   isActions: true,
-          //   prefixIconImage: AppImages.menuIcon,
-          //   actions: [
-          //     widget.isSkip
-          //         ? AppButton(
-          //             buttonName: "Login",
-          //             buttonRadius: BorderRadius.circular(10)0,
-          //             buttonColor: AppColors.PRIMARY_COLOR,
-          //             buttonHeight: 35,
-          //             buttonWidth: 80,
-          //             textColor: AppColors.WHITE_COLOR,
-          //             onTap: () {
-          //               Get.offAll(LoginScreen());
-          //             })
-          //         : Obx(() => chatController.isLoading.isTrue
-          //             ? CircularProgressIndicator()
-          //             : AppButton(
-          //                 buttonName: "Save Chat",
-          //                 buttonRadius: BorderRadius.circular(10)0,
-          //                 buttonColor: AppColors.PRIMARY_COLOR,
-          //                 buttonHeight: 35,
-          //                 buttonWidth: 100,
-          //                 textColor: AppColors.WHITE_COLOR,
-          //                 onTap: () {
-          //                   chatController.saveChat(messages: _messages);
-          //                 },
-          //               ))
-          //   ],
-          //   prefixOnTap: () {
-          //     scaffoldKey.currentState!.openDrawer();
-          //   },
-          // ),
-
           Expanded(
             child: _messages.isEmpty
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/ai_img.jpg",
-                        height: Get.height * 0.3,
-                      ),
-                      Text(
-                        "Ask Anything",
-                        style: TextStyle(color: Colors.black87),
-                      ),
-                    ],
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/ai_img.jpg",
+                          height: Get.height * 0.3,
+                        ),
+                        Text(
+                          "Ask Anything",
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                      ],
+                    ),
                   )
                 : ListView.builder(
+                    controller: _scrollController,
                     itemCount: _messages.length + (_isLoading ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (_isLoading && index == _messages.length) {
@@ -161,7 +114,7 @@ class _ChatPageState extends State<ChatPage> {
                                   color: KColors.kBlack.withOpacity(0.7),
                                   fontWeight: FontWeight.w600),
                               hSizedBox(width: 5),
-                              CircularProgressIndicator(),
+                              customLoader(),
                             ],
                           ),
                         );
@@ -218,46 +171,41 @@ class _ChatPageState extends State<ChatPage> {
                     },
                   ),
           ),
-          _isLoading
-              ? CircularProgressIndicator()
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      // color: Colors.red
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: AppTextField(
+                      controller: _controller,
+                      borderRadius: 100,
+                      isPrefix: false,
+                      hint: 'Write your message',
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: AppTextField(
-                            controller: _controller,
-                            borderRadius: 100,
-                            isPrefix: false,
-                            hint: 'Write your message',
-                          ),
-                        ),
-                        hSizedBox(),
-                        GestureDetector(
+                  ),
+                  hSizedBox(),
+                  _isLoading
+                      ? Container(width: Get.width * 0.1, child: customLoader())
+                      : GestureDetector(
                           onTap: _sendMessage,
                           child: Container(
-                            // padding: AppPaddings.defaultPadding,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              // color: KColors.kPrimary
-                            ),
+                            width: Get.width * 0.1,
+                            padding: EdgeInsets.only(right: 10),
                             child: Image.asset(
                               "assets/images/send.png",
                               color: KColors.kPrimary,
-                              scale: 18,
+                              scale: 15,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-          _isLoading ? vSizedBox() : vSizedBox(height: 10)
+                        ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
