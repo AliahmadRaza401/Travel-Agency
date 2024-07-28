@@ -11,6 +11,8 @@ import '../controller/chat_controller.dart';
 import '../controller/chat_request.dart';
 import '../controller/chat_service.dart';
 
+final List<Message> _messages = [];
+
 class ChatPage extends StatefulWidget {
   bool isSkip;
   ChatPage({
@@ -24,7 +26,6 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _controller = TextEditingController();
-  final List<Message> _messages = [];
   final ChatService _chatService = ChatService();
   bool _isLoading = false;
   ScrollController _scrollController = ScrollController();

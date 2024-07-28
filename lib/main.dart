@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'widgets/widgets_imports.dart';
 
 void main() {
@@ -9,30 +11,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: '',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      getPages: routes,
-      theme: ThemeData(
-        colorScheme: const ColorScheme(
-          brightness: Brightness.light,
-          primary: KColors.primaryColor,
-          onPrimary: KColors.kWhite,
-          secondary: KColors.kWhite,
-          onSecondary: KColors.kRed,
-          error: KColors.kRed,
-          onError: KColors.kWhite,
-          // background: KColors.kWhite,
-          // onBackground: KColors.primaryColor,
-          surface: KColors.kWhite,
-          onSurface: KColors.kRed,
-        ),
-        scaffoldBackgroundColor: KColors.kWhite,
-        // textTheme: GoogleFonts.anekTeluguTextTheme(
-        //   Theme.of(context).textTheme,
-        // ),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 813),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return GetMaterialApp(
+          title: '',
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/',
+          getPages: routes,
+          theme: ThemeData(
+            colorScheme: const ColorScheme(
+              brightness: Brightness.light,
+              primary: KColors.primaryColor,
+              onPrimary: KColors.kWhite,
+              secondary: KColors.kWhite,
+              onSecondary: KColors.kRed,
+              error: KColors.kRed,
+              onError: KColors.kWhite,
+              // background: KColors.kWhite,
+              // onBackground: KColors.primaryColor,
+              surface: KColors.kWhite,
+              onSurface: KColors.kRed,
+            ),
+            scaffoldBackgroundColor: KColors.kWhite,
+            // textTheme: GoogleFonts.anekTeluguTextTheme(
+            //   Theme.of(context).textTheme,
+            // ),
+          ),
+        );
+      },
     );
   }
 }
