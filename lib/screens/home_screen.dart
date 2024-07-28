@@ -7,6 +7,25 @@ class HomeScreen extends StatelessWidget {
   final HomeScreenController homeScreenController =
       Get.put(HomeScreenController());
   final TextEditingController searchController = TextEditingController();
+
+  List categoryList = [
+    {
+      'name': 'Hotels',
+      'img': 'assets/images/hotels.png',
+    },
+    {
+      'name': 'Flights',
+      'img': 'assets/images/flights.png',
+    },
+    {
+      'name': 'Holidays',
+      'img': 'assets/images/hollidays.png',
+    },
+    {
+      'name': 'Taxi',
+      'img': 'assets/images/carrenter.png',
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,23 +78,63 @@ class HomeScreen extends StatelessWidget {
                     textStyle: KTextStyles()
                         .normal(fontSize: 16, fontWeight: FontWeight.w600)),
                 heightBox(.02),
-                SizedBox(
-                  height: kHeight(.1),
-                  width: kWidth(1),
-                  child: ListView.separated(
-                      padding: const EdgeInsets.all(0),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                            onTap: () {
-                              Get.toNamed("/flightshome");
-                            },
-                            child: const CategoryBox());
-                      },
-                      separatorBuilder: (context, index) => widthBox(.03),
-                      itemCount: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed("/flightshome");
+                        },
+                        child: CategoryBox(
+                          name: categoryList[0]['name'],
+                          img: categoryList[0]['img'],
+                        )),
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed("/flightshome");
+                        },
+                        child: CategoryBox(
+                          name: categoryList[1]['name'],
+                          img: categoryList[1]['img'],
+                        )),
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed("/flightshome");
+                        },
+                        child: CategoryBox(
+                          name: categoryList[2]['name'],
+                          img: categoryList[2]['img'],
+                        )),
+                    GestureDetector(
+                        onTap: () {
+                          Get.toNamed("/flightshome");
+                        },
+                        child: CategoryBox(
+                          name: categoryList[3]['name'],
+                          img: categoryList[3]['img'],
+                        )),
+                  ],
                 ),
+                // SizedBox(
+                //   height: kHeight(.1),
+                //   width: kWidth(1),
+                //   child: ListView.separated(
+                //       padding: const EdgeInsets.all(0),
+                //       shrinkWrap: true,
+                //       scrollDirection: Axis.horizontal,
+                //       itemBuilder: (context, index) {
+                //         return GestureDetector(
+                //             onTap: () {
+                //               Get.toNamed("/flightshome");
+                //             },
+                //             child: CategoryBox(
+                //               name: categoryList[index]['name'],
+                //               img: categoryList[index]['img'],
+                //             ));
+                //       },
+                //       separatorBuilder: (context, index) => widthBox(.03),
+                //       itemCount: categoryList.length),
+                // ),
                 heightBox(.02),
                 CustomText(
                     text: "Cities",
@@ -201,9 +260,9 @@ class HomeCityBox extends StatelessWidget {
 }
 
 class CategoryBox extends StatelessWidget {
-  const CategoryBox({
-    super.key,
-  });
+  String name;
+  String img;
+  CategoryBox({required this.name, required this.img});
 
   @override
   Widget build(BuildContext context) {
@@ -221,14 +280,14 @@ class CategoryBox extends StatelessWidget {
           ),
           child: Center(
             child: Image.asset(
-              "assets/images/flights.png",
+              img,
               height: kHeight(.03),
             ),
           ),
         ),
         heightBox(.01),
         CustomText(
-            text: "Flights",
+            text: name,
             textStyle:
                 KTextStyles().normal(fontSize: 12, fontWeight: FontWeight.w600))
       ],

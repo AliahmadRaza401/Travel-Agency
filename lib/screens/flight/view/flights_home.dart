@@ -36,9 +36,14 @@ class FlightsHome extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(
-                          Icons.arrow_back_ios_new,
-                          color: KColors.kWhite,
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: KColors.kWhite,
+                          ),
                         ),
                         CustomText(
                             text: "Search Flights",
