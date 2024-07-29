@@ -43,7 +43,7 @@ class HotelPaymentSuccessful extends StatelessWidget {
               color: KColors.kWhite,
               text: "Go to Home",
               function: () {
-                Get.toNamed("/hotelhome");
+                Get.toNamed("/");
               },
             )
           ],
