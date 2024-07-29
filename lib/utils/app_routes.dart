@@ -10,6 +10,12 @@ import 'package:travel_agency/screens/flight/view/search_flights.dart';
 import 'package:travel_agency/screens/flight/view/seating_plan.dart';
 import 'package:travel_agency/screens/flight/view/transaction_details.dart';
 import 'package:travel_agency/screens/homepage.dart';
+import 'package:travel_agency/screens/hotel/view/booking_summary.dart';
+import 'package:travel_agency/screens/hotel/view/hotel_detail.dart';
+import 'package:travel_agency/screens/hotel/view/hotel_home.dart';
+import 'package:travel_agency/screens/hotel/view/hotel_payment_details.dart';
+import 'package:travel_agency/screens/hotel/view/hotel_payment_successful.dart';
+import 'package:travel_agency/screens/hotel/view/search_hotels.dart';
 
 import '../widgets/widgets_imports.dart';
 
@@ -32,4 +38,12 @@ dynamic routes = [
   GetPage(name: '/paymentsuccessful', page: () => const PaymentSuccessful()),
   GetPage(name: '/transaction', page: () => const TransactionDetails()),
   GetPage(name: '/seatingplan', page: () => SeatingPlan()),
+  // HOTEL //
+  GetPage(name: '/hotelhome', page: () => HotelHome()),
+  GetPage(name: '/searchhotel', page: () => SearchHotels()),
+  GetPage(name: '/hoteldetail', page: () => HotelDetail()),
+  GetPage(name: '/bookingsummary', page: () => BookingSummary()),
+  GetPage(name: '/hotelpaymentdetails', page: () => HotelPaymentDetails()),
+  GetPage(
+      name: '/hotelpaymentsuccessful', page: () => HotelPaymentSuccessful()),
 ];

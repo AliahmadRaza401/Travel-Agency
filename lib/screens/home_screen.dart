@@ -69,7 +69,8 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                             onTap: () {
-                              Get.toNamed("/flightshome");
+                              Get.toNamed("/hotelhome");
+                              //Get.toNamed("/flightshome");
                             },
                             child: const CategoryBox());
                       },
