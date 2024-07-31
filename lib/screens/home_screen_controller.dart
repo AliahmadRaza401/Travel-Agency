@@ -6,9 +6,20 @@ class HomeScreenController extends GetxController {
   final isLoading = true.obs;
   final isError = false.obs;
 
-  RxList travellingList = RxList<Cities>();
+  RxList<Cities> travellingList = RxList<Cities>();
+  RxList<Cities> filtercityList = RxList<Cities>();
 
   final scrollController = ScrollController(initialScrollOffset: 0);
+
+  filterCity(key) {
+    filtercityList = travellingList
+        .where((city) => city.title.toLowerCase().contains(key.toLowerCase()))
+        .toList()
+        .obs;
+    update();
+
+    log("filtercityList: ${filtercityList.length}");
+  }
 
   getTravellingList() async {
     isLoading.value = true;

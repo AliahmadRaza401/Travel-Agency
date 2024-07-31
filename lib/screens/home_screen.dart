@@ -1,4 +1,5 @@
 import 'package:travel_agency/screens/home_screen_controller.dart';
+import 'package:travel_agency/screens/home_screen_modal.dart';
 
 import '../widgets/widgets_imports.dart';
 
@@ -34,137 +35,169 @@ class HomeScreen extends StatelessWidget {
           height: context.height,
           width: kWidth(.9),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                heightBox(.05),
-                Center(
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    height: kHeight(.05),
-                  ),
-                ),
-                heightBox(.04),
-                Container(
-                  width: kWidth(.9),
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: KColors.kGrey.withOpacity(.2),
-                            blurRadius: 5,
-                            offset: const Offset(1, 1))
-                      ],
-                      color: KColors.kWhite,
-                      borderRadius: BorderRadius.circular(kWidth(.04))),
-                  child: TextField(
-                    cursorErrorColor: KColors.kGrey,
-                    controller: searchController,
-                    style: const TextStyle(color: KColors.kGrey),
-                    cursorColor: KColors.kGrey,
-                    decoration: InputDecoration(
-                        focusColor: KColors.kGrey,
-                        hintText: "Search",
-                        prefixIcon: Icon(
-                          Icons.search,
-                          size: kHeight(.04),
-                          color: KColors.kBlack,
+            child: GetBuilder<HomeScreenController>(
+                init: HomeScreenController(),
+                builder: (controller) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      heightBox(.05),
+                      Center(
+                        child: Image.asset(
+                          "assets/images/logo.png",
+                          height: kHeight(.05),
                         ),
-                        border: InputBorder.none),
-                  ),
-                ),
-                heightBox(.02),
-                CustomText(
-                    text: "Categories",
-                    textStyle: KTextStyles()
-                        .normal(fontSize: 16, fontWeight: FontWeight.w600)),
-                heightBox(.02),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Get.toNamed("/hotelhome");
-                        },
-                        child: CategoryBox(
-                          name: categoryList[0]['name'],
-                          img: categoryList[0]['img'],
-                        )),
-                    GestureDetector(
-                        onTap: () {
-                          Get.toNamed("/flightshome");
-                        },
-                        child: CategoryBox(
-                          name: categoryList[1]['name'],
-                          img: categoryList[1]['img'],
-                        )),
-                    GestureDetector(
-                        onTap: () {
-                          Get.toNamed("/flightshome");
-                        },
-                        child: CategoryBox(
-                          name: categoryList[2]['name'],
-                          img: categoryList[2]['img'],
-                        )),
-                    GestureDetector(
-                        onTap: () {
-                          Get.toNamed("/flightshome");
-                        },
-                        child: CategoryBox(
-                          name: categoryList[3]['name'],
-                          img: categoryList[3]['img'],
-                        )),
-                  ],
-                ),
-                // SizedBox(
-                //   height: kHeight(.1),
-                //   width: kWidth(1),
-                //   child: ListView.separated(
-                //       padding: const EdgeInsets.all(0),
-                //       shrinkWrap: true,
-                //       scrollDirection: Axis.horizontal,
-                //       itemBuilder: (context, index) {
-                //         return GestureDetector(
-                //             onTap: () {
-                //               Get.toNamed("/flightshome");
-                //             },
-                //             child: CategoryBox(
-                //               name: categoryList[index]['name'],
-                //               img: categoryList[index]['img'],
-                //             ));
-                //       },
-                //       separatorBuilder: (context, index) => widthBox(.03),
-                //       itemCount: categoryList.length),
-                // ),
-                heightBox(.02),
-                CustomText(
-                    text: "Cities",
-                    textStyle: KTextStyles()
-                        .normal(fontSize: 16, fontWeight: FontWeight.w600)),
-                heightBox(.02),
-                Obx(() {
-                  return GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(0),
-                    itemCount: homeScreenController.travellingList.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.82,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 20,
-                            crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return Center(
-                          child: HomeCityBox(
-                        controller: homeScreenController,
-                        index: index,
-                      ));
-                    },
+                      ),
+                      heightBox(.04),
+                      Container(
+                        width: kWidth(.9),
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: KColors.kGrey.withOpacity(.2),
+                                  blurRadius: 5,
+                                  offset: const Offset(1, 1))
+                            ],
+                            color: KColors.kWhite,
+                            borderRadius: BorderRadius.circular(kWidth(.04))),
+                        child: TextField(
+                          cursorErrorColor: KColors.kGrey,
+                          controller: searchController,
+                          onChanged: (v) {
+                            print('v: ${v}');
+                            controller.filterCity(v);
+                          },
+                          style: const TextStyle(color: KColors.kGrey),
+                          cursorColor: KColors.kGrey,
+                          decoration: InputDecoration(
+                              focusColor: KColors.kGrey,
+                              hintText: "Search",
+                              prefixIcon: Icon(
+                                Icons.search,
+                                size: kHeight(.04),
+                                color: KColors.kBlack,
+                              ),
+                              border: InputBorder.none),
+                        ),
+                      ),
+                      heightBox(.02),
+                      CustomText(
+                          text: "Categories",
+                          textStyle: KTextStyles().normal(
+                              fontSize: 16, fontWeight: FontWeight.w600)),
+                      heightBox(.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                Get.toNamed("/hotelhome");
+                              },
+                              child: CategoryBox(
+                                name: categoryList[0]['name'],
+                                img: categoryList[0]['img'],
+                              )),
+                          GestureDetector(
+                              onTap: () {
+                                Get.toNamed("/flightshome");
+                              },
+                              child: CategoryBox(
+                                name: categoryList[1]['name'],
+                                img: categoryList[1]['img'],
+                              )),
+                          GestureDetector(
+                              onTap: () {
+                                Get.toNamed("/flightshome");
+                              },
+                              child: CategoryBox(
+                                name: categoryList[2]['name'],
+                                img: categoryList[2]['img'],
+                              )),
+                          GestureDetector(
+                              onTap: () {
+                                Get.toNamed("/flightshome");
+                              },
+                              child: CategoryBox(
+                                name: categoryList[3]['name'],
+                                img: categoryList[3]['img'],
+                              )),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   height: kHeight(.1),
+                      //   width: kWidth(1),
+                      //   child: ListView.separated(
+                      //       padding: const EdgeInsets.all(0),
+                      //       shrinkWrap: true,
+                      //       scrollDirection: Axis.horizontal,
+                      //       itemBuilder: (context, index) {
+                      //         return GestureDetector(
+                      //             onTap: () {
+                      //               Get.toNamed("/flightshome");
+                      //             },
+                      //             child: CategoryBox(
+                      //               name: categoryList[index]['name'],
+                      //               img: categoryList[index]['img'],
+                      //             ));
+                      //       },
+                      //       separatorBuilder: (context, index) => widthBox(.03),
+                      //       itemCount: categoryList.length),
+                      // ),
+                      heightBox(.02),
+                      CustomText(
+                          text: "Cities",
+                          textStyle: KTextStyles().normal(
+                              fontSize: 16, fontWeight: FontWeight.w600)),
+                      heightBox(.02),
+                      searchController.text.isNotEmpty
+                          ? controller.filtercityList.isEmpty
+                              ? Center(
+                                  child: CustomText(
+                                      text: "No Data Found",
+                                      textStyle: KTextStyles().normal(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600)),
+                                )
+                              : GridView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  padding: const EdgeInsets.all(0),
+                                  itemCount: controller.filtercityList.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          childAspectRatio: 0.82,
+                                          crossAxisSpacing: 10,
+                                          mainAxisSpacing: 20,
+                                          crossAxisCount: 2),
+                                  itemBuilder: (context, index) {
+                                    return Center(
+                                        child: HomeCityBox(
+                                      city: controller.filtercityList[index],
+                                    ));
+                                  },
+                                )
+                          : GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.all(0),
+                              itemCount: controller.travellingList.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 0.82,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 20,
+                                      crossAxisCount: 2),
+                              itemBuilder: (context, index) {
+                                return Center(
+                                    child: HomeCityBox(
+                                  city: controller.travellingList[index],
+                                ));
+                              },
+                            ),
+                      heightBox(.1),
+                    ],
                   );
                 }),
-                heightBox(.1),
-              ],
-            ),
           ),
         ),
       ),
@@ -173,19 +206,17 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomeCityBox extends StatelessWidget {
-  final HomeScreenController controller;
-  final int index;
+  final Cities city;
   const HomeCityBox({
     super.key,
-    required this.controller,
-    required this.index,
+    required this.city,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed("/blogpage", arguments: controller.travellingList[index]);
+        Get.toNamed("/blogpage", arguments: city);
       },
       child: Container(
         height: context.height,
@@ -205,7 +236,7 @@ class HomeCityBox extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(kWidth(.04)),
                   child: Image.network(
-                    controller.travellingList[index].image,
+                    city.image,
                     height: kHeight(.15),
                     width: kWidth(.4),
                     fit: BoxFit.fill,
@@ -230,7 +261,7 @@ class HomeCityBox extends StatelessWidget {
             ),
             heightBox(.01),
             CustomText(
-                text: controller.travellingList[index].title.toString(),
+                text: city.title.toString(),
                 textStyle: KTextStyles().normal(
                     textColor: KColors.kTextColor,
                     fontSize: 14,
@@ -246,7 +277,7 @@ class HomeCityBox extends StatelessWidget {
                   child: CustomText(
                       alignText: TextAlign.left,
                       maxLines: 2,
-                      text: controller.travellingList[index].city.toString(),
+                      text: city.city.toString(),
                       textStyle: KTextStyles()
                           .normal(fontSize: 12, fontWeight: FontWeight.w500)),
                 ),
