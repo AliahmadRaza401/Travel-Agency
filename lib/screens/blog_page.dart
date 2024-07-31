@@ -1,6 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:travel_agency/screens/home_screen_controller.dart';
+import 'package:travel_agency/utils/app_loader.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 import 'home_screen_modal.dart';
@@ -85,8 +86,7 @@ class BlogPage extends StatelessWidget {
                                     children: [
                                       GestureDetector(
                                         onTap: () async {
-                                          await Share.share(
-                                              'Check out this awesome image!');
+                                          await Share.share('');
                                         },
                                         child: const Icon(
                                           Icons.share,
@@ -160,19 +160,27 @@ class BlogPage extends StatelessWidget {
                       SizedBox(
                         height: kHeight(.15),
                         width: kWidth(.9),
-                        child: ListView.separated(
-                            padding: const EdgeInsets.all(0),
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Center(
-                                  child: Gallerybox(
-                                images: data?.gallery ?? [],
-                                index: index,
-                              ));
-                            },
-                            separatorBuilder: (context, index) => widthBox(.02),
-                            itemCount: data?.gallery.length ?? 0),
+                        child: Obx(() {
+                          return controller.isLoading.value
+                              ? Center(
+                                  child: Container(
+                                      width: Get.width * 0.1,
+                                      child: customLoader()))
+                              : ListView.separated(
+                                  padding: const EdgeInsets.all(0),
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return Center(
+                                        child: Gallerybox(
+                                      images: data?.gallery ?? [],
+                                      index: index,
+                                    ));
+                                  },
+                                  separatorBuilder: (context, index) =>
+                                      widthBox(.02),
+                                  itemCount: data?.gallery.length ?? 0);
+                        }),
                       ),
                       heightBox(.02),
                       GestureDetector(
