@@ -1,12 +1,20 @@
 import 'package:travel_agency/screens/home_screen_controller.dart';
 import 'package:travel_agency/screens/home_screen_modal.dart';
 
+import '../utils/app_loader.dart';
 import '../widgets/widgets_imports.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final HomeScreenController homeScreenController =
       Get.put(HomeScreenController());
+
   final TextEditingController searchController = TextEditingController();
 
   List categoryList = [
@@ -27,6 +35,14 @@ class HomeScreen extends StatelessWidget {
       'img': 'assets/images/carrenter.png',
     },
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    homeScreenController.loadFavorites();
+    homeScreenController.getTravellingList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,26 +159,93 @@ class HomeScreen extends StatelessWidget {
                       //       separatorBuilder: (context, index) => widthBox(.03),
                       //       itemCount: categoryList.length),
                       // ),
+                      controller.favoriteList.isEmpty
+                          ? SizedBox()
+                          : searchController.text.isNotEmpty
+                              ? SizedBox()
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    heightBox(.02),
+                                    CustomText(
+                                        text: "Favourite",
+                                        textStyle: KTextStyles().normal(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600)),
+                                    heightBox(.02),
+                                    Container(
+                                      height: Get.height * 0.27,
+                                      child: ListView.builder(
+                                        physics: ClampingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        padding: const EdgeInsets.all(0),
+                                        itemCount:
+                                            controller.favoriteList.length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
+                                            child: Center(
+                                                child: HomeCityBox(
+                                              city: controller
+                                                  .favoriteList[index],
+                                              controller: controller,
+                                            )),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
                       heightBox(.02),
                       CustomText(
                           text: "Cities",
                           textStyle: KTextStyles().normal(
                               fontSize: 16, fontWeight: FontWeight.w600)),
                       heightBox(.02),
-                      searchController.text.isNotEmpty
-                          ? controller.filtercityList.isEmpty
-                              ? Center(
-                                  child: CustomText(
-                                      text: "No Data Found",
-                                      textStyle: KTextStyles().normal(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                )
+                      controller.isLoading.value
+                          ? Center(
+                              child: Container(
+                                  width: Get.width * 0.1,
+                                  child: customLoader()))
+                          : searchController.text.isNotEmpty
+                              ? controller.filtercityList.isEmpty
+                                  ? Center(
+                                      child: CustomText(
+                                          text: "No Data Found",
+                                          textStyle: KTextStyles().normal(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600)),
+                                    )
+                                  : GridView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      padding: const EdgeInsets.all(0),
+                                      itemCount:
+                                          controller.filtercityList.length,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              childAspectRatio: 0.82,
+                                              crossAxisSpacing: 10,
+                                              mainAxisSpacing: 20,
+                                              crossAxisCount: 2),
+                                      itemBuilder: (context, index) {
+                                        return Center(
+                                            child: HomeCityBox(
+                                          city:
+                                              controller.filtercityList[index],
+                                          controller: controller,
+                                        ));
+                                      },
+                                    )
                               : GridView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   padding: const EdgeInsets.all(0),
-                                  itemCount: controller.filtercityList.length,
+                                  itemCount: controller.travellingList.length,
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
                                           childAspectRatio: 0.82,
@@ -172,28 +255,11 @@ class HomeScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return Center(
                                         child: HomeCityBox(
-                                      city: controller.filtercityList[index],
+                                      city: controller.travellingList[index],
+                                      controller: controller,
                                     ));
                                   },
-                                )
-                          : GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.all(0),
-                              itemCount: controller.travellingList.length,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 0.82,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 20,
-                                      crossAxisCount: 2),
-                              itemBuilder: (context, index) {
-                                return Center(
-                                    child: HomeCityBox(
-                                  city: controller.travellingList[index],
-                                ));
-                              },
-                            ),
+                                ),
                       heightBox(.1),
                     ],
                   );
@@ -206,10 +272,13 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomeCityBox extends StatelessWidget {
+  final HomeScreenController controller;
+
   final Cities city;
   const HomeCityBox({
     super.key,
     required this.city,
+    required this.controller,
   });
 
   @override
@@ -242,17 +311,24 @@ class HomeCityBox extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(right: kWidth(.02), top: kWidth(.02)),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: CircleAvatar(
-                      radius: kHeight(.02),
-                      backgroundColor: KColors.kWhite,
-                      child: const Icon(
-                        Icons.favorite_outline,
-                        color: KColors.kBlack,
+                GestureDetector(
+                  onTap: () {
+                    controller.toggleFavorite(city);
+                  },
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(right: kWidth(.02), top: kWidth(.02)),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: CircleAvatar(
+                        radius: kHeight(.02),
+                        backgroundColor: KColors.kWhite,
+                        child: Icon(
+                          city.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                          color: city.isFavorite ? Colors.red : KColors.kBlack,
+                        ),
                       ),
                     ),
                   ),

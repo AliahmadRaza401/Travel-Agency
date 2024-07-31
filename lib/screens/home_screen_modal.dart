@@ -17,21 +17,22 @@ class Cities {
   String image;
   List<String> gallery;
   String description;
-  DateTime createdAt;
+  // DateTime createdAt;
+  bool isFavorite;
 
-  Cities({
-    required this.travelId,
-    required this.categories,
-    required this.title,
-    required this.city,
-    required this.address,
-    required this.lat,
-    required this.long,
-    required this.image,
-    required this.gallery,
-    required this.description,
-    required this.createdAt,
-  });
+  Cities(
+      {required this.travelId,
+      required this.categories,
+      required this.title,
+      required this.city,
+      required this.address,
+      required this.lat,
+      required this.long,
+      required this.image,
+      required this.gallery,
+      required this.description,
+      // required this.createdAt,
+      this.isFavorite = false});
 
   factory Cities.fromMap(Map<String, dynamic> json) => Cities(
         travelId: json["travel_id"],
@@ -45,7 +46,8 @@ class Cities {
         image: json["image"],
         gallery: List<String>.from(json["gallery"].map((x) => x)),
         description: json["description"],
-        createdAt: DateTime.parse(json["created_at"]),
+        // createdAt: DateTime.parse(json["created_at"]),
+        isFavorite: false,
       );
 
   Map<String, dynamic> toMap() => {
@@ -59,7 +61,8 @@ class Cities {
         "image": image,
         "gallery": List<dynamic>.from(gallery.map((x) => x)),
         "description": description,
-        "created_at": createdAt.toIso8601String(),
+        // "created_at": createdAt.toIso8601String(),
+        'isFavorite': isFavorite,
       };
 }
 
