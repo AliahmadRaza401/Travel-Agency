@@ -276,7 +276,7 @@ class SearchHotels extends StatelessWidget {
                       padding: EdgeInsets.all(0),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return RecommendHotelBox();
+                        return BusinessAccommodateBox();
                       },
                       separatorBuilder: (context, index) => widthBox(.06),
                       itemCount: 4),
@@ -292,6 +292,108 @@ class SearchHotels extends StatelessWidget {
 
 class RecommendHotelBox extends StatelessWidget {
   const RecommendHotelBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: kWidth(.5),
+      padding: EdgeInsets.all(kWidth(.025)),
+      decoration: BoxDecoration(
+          color: KColors.kGrey.withOpacity(.1),
+          borderRadius: BorderRadius.circular(kWidth(.02))),
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            "assets/images/hotelpic.png",
+            height: kHeight(.15),
+            width: context.width,
+            fit: BoxFit.fill,
+          ),
+          heightBox(.01),
+          Row(
+            children: [
+              Container(
+                  width: kWidth(.15),
+                  decoration: BoxDecoration(
+                    color: KColors.kPrimary.withOpacity(.2),
+                    borderRadius: BorderRadius.circular(kWidth(.02)),
+                  ),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(kWidth(.02)),
+                  child: CustomText(
+                      text: "10% Off",
+                      textStyle: KTextStyles()
+                          .normal(fontSize: 7, textColor: KColors.kPrimary))),
+              widthBox(.01),
+              Container(
+                width: kWidth(.15),
+                decoration: BoxDecoration(
+                  color: KColors.kPrimary.withOpacity(.2),
+                  borderRadius: BorderRadius.circular(kWidth(.1)),
+                ),
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(kWidth(.02)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: KColors.kPrimary,
+                      size: kHeight(.015),
+                    ),
+                    widthBox(.01),
+                    CustomText(
+                        text: "4.5",
+                        textStyle: KTextStyles()
+                            .normal(fontSize: 7, textColor: KColors.kPrimary)),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Icon(
+                Icons.favorite_outline,
+                color: KColors.kPrimary,
+              )
+            ],
+          ),
+          heightBox(.01),
+          CustomText(
+              text: "AYANA Resort",
+              textStyle: KTextStyles().normal(fontWeight: FontWeight.bold)),
+          heightBox(.01),
+          Row(
+            children: [
+              Icon(
+                Icons.location_on_outlined,
+                size: kHeight(.015),
+              ),
+              CustomText(
+                  text: "Bali, Indonesia",
+                  textStyle: KTextStyles().normal(
+                      fontSize: 10,
+                      textColor: KColors.kTextColor.withOpacity(.5))),
+            ],
+          ),
+          heightBox(.01),
+          CustomRichText(
+              focusedColor: KColors.kPrimary,
+              focusedFontSize: 10,
+              normalFontSize: 10,
+              focusPosition: FocusPosition.start,
+              normalText: " /night",
+              focusedText: "\$200 - \$500 USD ")
+        ],
+      ),
+    );
+  }
+}
+
+class BusinessAccommodateBox extends StatelessWidget {
+  const BusinessAccommodateBox({
     super.key,
   });
 

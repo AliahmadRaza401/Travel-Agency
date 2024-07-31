@@ -5,7 +5,7 @@ class RetrieveBooking extends StatelessWidget {
   RetrieveBooking({super.key});
   final TextEditingController nameController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
-  final TextEditingController personController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final DateController dateController = Get.put(DateController());
 
   @override
@@ -49,7 +49,7 @@ class RetrieveBooking extends StatelessWidget {
                 ),
                 heightBox(.02),
                 CustomText(
-                    text: "Sur Name",
+                    text: "Email Address",
                     textStyle: KTextStyles()
                         .normal(fontSize: 16, fontWeight: FontWeight.w600)),
                 heightBox(.02),
@@ -60,16 +60,16 @@ class RetrieveBooking extends StatelessWidget {
                       color: KColors.kGrey.withOpacity(.1),
                       borderRadius: BorderRadius.circular(kWidth(.04))),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     style: const TextStyle(color: KColors.kGrey),
                     cursorColor: KColors.kGrey,
                     decoration: const InputDecoration(
-                        hintText: "Name", border: InputBorder.none),
+                        hintText: "Email Address", border: InputBorder.none),
                   ),
                 ),
                 heightBox(.02),
                 CustomText(
-                    text: "Date",
+                    text: "Departure Date",
                     textStyle: KTextStyles()
                         .normal(fontSize: 16, fontWeight: FontWeight.w600)),
                 heightBox(.02),
@@ -117,26 +117,6 @@ class RetrieveBooking extends StatelessWidget {
                         );
                       }),
                     ),
-                  ),
-                ),
-                heightBox(.02),
-                CustomText(
-                    text: "Persons",
-                    textStyle: KTextStyles()
-                        .normal(fontSize: 16, fontWeight: FontWeight.w600)),
-                heightBox(.02),
-                Container(
-                  width: kWidth(.9),
-                  padding: EdgeInsets.only(left: kWidth(.04)),
-                  decoration: BoxDecoration(
-                      color: KColors.kGrey.withOpacity(.1),
-                      borderRadius: BorderRadius.circular(kWidth(.04))),
-                  child: TextField(
-                    controller: personController,
-                    style: const TextStyle(color: KColors.kGrey),
-                    cursorColor: KColors.kGrey,
-                    decoration: const InputDecoration(
-                        hintText: "Enter Here", border: InputBorder.none),
                   ),
                 ),
                 const Spacer(),

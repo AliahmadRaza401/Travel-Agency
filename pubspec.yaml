@@ -54,7 +54,12 @@ dependencies:
   pinput: ^3.0.1
   flutter_spinkit: ^5.1.0
   flutter_screenutil: ^5.9.3
+  easy_url_launcher: ^0.0.7
+  google_maps_flutter: ^2.2.0
  
+
+  share_plus: ^10.0.0
+  
 
   # flutter_avif: ^2.3.0
 

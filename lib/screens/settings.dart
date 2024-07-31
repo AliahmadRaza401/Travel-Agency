@@ -1,3 +1,4 @@
+import 'package:easy_url_launcher/easy_url_launcher.dart';
 import 'package:travel_agency/widgets/customText.dart';
 
 import '../widgets/widgets_imports.dart';
@@ -33,106 +34,21 @@ class Settings extends StatelessWidget {
               ),
             ),
             SizedBox(height: 47.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.settings,
-                          color: KColors.kPrimary,
-                        ),
-                        SizedBox(
-                            width: 8
-                                .w), // Adjust the space between the icon and the text
-                        CText(
-                          text: 'Account settings',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: KColors.kPrimary,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
+
             SizedBox(
               height: 17.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.lock,
-                          color: KColors.kPrimary,
-                        ),
-                        SizedBox(
-                            width: 8
-                                .w), // Adjust the space between the icon and the text
-                        CText(
-                          text: 'Password',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: KColors.kPrimary,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
-            SizedBox(
-              height: 17.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+
+            Container(
+              width: kWidth(.9),
+              decoration: BoxDecoration(
+                  color: KColors.kPrimary,
+                  boxShadow: [
+                    BoxShadow(
+                        color: KColors.kGrey.withOpacity(.2), blurRadius: 5),
+                  ],
+                  borderRadius: BorderRadius.circular(kWidth(.02))),
+              padding: EdgeInsets.all(kWidth(.04)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -140,45 +56,39 @@ class Settings extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.move_up,
-                        color: KColors.kPrimary,
+                        color: KColors.kWhite,
                       ),
-                      SizedBox(
-                          width: 8
-                              .w), // Adjust the space between the icon and the text
+                      SizedBox(width: 8.w),
                       CText(
-                        text: 'Theme Mode Dark/Light',
+                        text: 'App Theme',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: KColors.kPrimary,
+                        color: KColors.kWhite,
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    size: 24.w,
+                    color: KColors.kWhite,
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
+
             SizedBox(
               height: 17.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+            Container(
+              width: kWidth(.9),
+              decoration: BoxDecoration(
+                  color: KColors.kPrimary,
+                  boxShadow: [
+                    BoxShadow(
+                        color: KColors.kGrey.withOpacity(.2), blurRadius: 5),
+                  ],
+                  borderRadius: BorderRadius.circular(kWidth(.02))),
+              padding: EdgeInsets.all(kWidth(.04)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -188,7 +98,7 @@ class Settings extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.support,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                         SizedBox(
                             width: 8
@@ -197,47 +107,47 @@ class Settings extends StatelessWidget {
                           text: 'Customer support',
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    size: 24.w,
+                    color: KColors.kWhite,
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
+
             SizedBox(
               height: 17.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
+            Container(
+              width: kWidth(.9),
+              decoration: BoxDecoration(
+                  color: KColors.kPrimary,
+                  boxShadow: [
+                    BoxShadow(
+                        color: KColors.kGrey.withOpacity(.2), blurRadius: 5),
+                  ],
+                  borderRadius: BorderRadius.circular(kWidth(.02))),
+              padding: EdgeInsets.all(kWidth(.04)),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () async {
+                  await EasyLauncher.url(
+                      url: "https://www.sourcetravel.com/privacy-policy");
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
                         const Icon(
                           Icons.privacy_tip,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                         SizedBox(
                             width: 8
@@ -246,47 +156,47 @@ class Settings extends StatelessWidget {
                           text: 'Privacy policy',
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
-                  ),
-                ],
+                    Icon(
+                      Icons.keyboard_arrow_right,
+                      size: 24.w,
+                      color: KColors.kWhite,
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
+
             SizedBox(
               height: 17.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
+            Container(
+              width: kWidth(.9),
+              decoration: BoxDecoration(
+                  color: KColors.kPrimary,
+                  boxShadow: [
+                    BoxShadow(
+                        color: KColors.kGrey.withOpacity(.2), blurRadius: 5),
+                  ],
+                  borderRadius: BorderRadius.circular(kWidth(.02))),
+              padding: EdgeInsets.all(kWidth(.04)),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () async {
+                  await EasyLauncher.url(
+                      url: "https://www.sourcetravel.com/terms-and-conditions");
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
                         const Icon(
                           Icons.local_police,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                         SizedBox(
                             width: 8
@@ -295,32 +205,20 @@ class Settings extends StatelessWidget {
                           text: 'Terms and conditions',
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: KColors.kPrimary,
+                          color: KColors.kWhite,
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_right,
-                        size: 24.w,
-                        color: KColors.kPrimary,
-                      ),
-                    ],
-                  ),
-                ],
+                    Icon(
+                      Icons.keyboard_arrow_right,
+                      size: 24.w,
+                      color: KColors.kWhite,
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Divider(
-              color: KColors.kPrimary,
-              thickness: 1,
-              indent: 30.w,
-              endIndent: 30.w,
-            ),
+
             SizedBox(
               height: 17.h,
             ),

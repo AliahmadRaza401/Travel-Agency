@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:travel_agency/screens/home_screen_controller.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
@@ -6,9 +8,13 @@ import 'home_screen_modal.dart';
 class BlogPage extends StatelessWidget {
   final HomeScreenController homeScreenController =
       Get.put(HomeScreenController());
+
   BlogPage({super.key});
   final Cities? data = Get.arguments;
-
+  CameraPosition _initialPosition = CameraPosition(
+    target: LatLng(37.77483, -122.41942), // San Francisco
+    zoom: 12.0,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +61,7 @@ class BlogPage extends StatelessWidget {
                                           text: data?.title ?? "",
                                           textStyle: KTextStyles().normal(
                                               textColor: KColors.kWhite,
-                                              fontSize: 14,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w600)),
                                       heightBox(.005),
                                       Row(
@@ -68,7 +74,7 @@ class BlogPage extends StatelessWidget {
                                               text: data?.city ?? "",
                                               textStyle: KTextStyles().normal(
                                                   textColor: KColors.kWhite,
-                                                  fontSize: 12,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.w500)),
                                         ],
                                       ),
@@ -77,9 +83,15 @@ class BlogPage extends StatelessWidget {
                                   const Spacer(),
                                   Row(
                                     children: [
-                                      const Icon(
-                                        Icons.share,
-                                        color: KColors.kWhite,
+                                      GestureDetector(
+                                        onTap: () async {
+                                          await Share.share(
+                                              'Check out this awesome image!');
+                                        },
+                                        child: const Icon(
+                                          Icons.share,
+                                          color: KColors.kWhite,
+                                        ),
                                       ),
                                       widthBox(.01),
                                       GestureDetector(
@@ -125,14 +137,14 @@ class BlogPage extends StatelessWidget {
                           text:
                               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu amet tempor, in massa, habitasse habitasse fermentum, sed faucibus. Augue arcu, ac proin accumsan urna morbi diam nunc, tincidunt. Ac turpis amet vitae dui aliquam vitae nunc. Non enim, lorem duis maecenas odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu amet tempor, in massa, habitasse habitasse fermentum, sed faucibus. Augue arcu, ac proin accumsan urna morbi diam nunc, tincidunt. Ac turpis amet vitae dui aliquam vitae nunc. Non enim, lorem duis maecenas odio  ",
                           textStyle: KTextStyles().normal(
-                            fontSize: 12,
+                            fontSize: 14,
                             textColor: KColors.kTextColor,
                           )),
                       heightBox(.02),
                       const CustomRichText(
                           normalColor: KColors.kTextColor,
-                          normalFontSize: 12,
-                          focusedFontSize: 12,
+                          normalFontSize: 14,
+                          focusedFontSize: 14,
                           maxLines: 20,
                           focusedColor: KColors.kPrimary,
                           focusPosition: FocusPosition.end,
@@ -163,15 +175,41 @@ class BlogPage extends StatelessWidget {
                             itemCount: data?.gallery.length ?? 0),
                       ),
                       heightBox(.02),
-                      CustomText(
-                          text: "Location",
-                          textStyle: KTextStyles().normal(
-                              fontSize: 16, fontWeight: FontWeight.w600)),
+                      GestureDetector(
+                        onTap: () {},
+                        child: CustomText(
+                            text: "Location",
+                            textStyle: KTextStyles().normal(
+                                fontSize: 16, fontWeight: FontWeight.w600)),
+                      ),
                       heightBox(.02),
-                      Image.asset(
-                        "assets/images/maps.png",
+                      SizedBox(
                         height: kHeight(.25),
                         width: kWidth(.9),
+                        child: GoogleMap(
+                          onTap: (argument) {
+                            Get.dialog(Center(
+                              child: Container(
+                                height: kHeight(.8),
+                                width: kWidth(.9),
+                                decoration: BoxDecoration(
+                                    color: KColors.kWhite,
+                                    borderRadius:
+                                        BorderRadius.circular(kWidth(.02))),
+                                child: GoogleMap(
+                                  initialCameraPosition: _initialPosition,
+                                  zoomControlsEnabled: false,
+                                  onMapCreated:
+                                      (GoogleMapController controller) {},
+                                ),
+                              ),
+                            ));
+                          },
+                          zoomGesturesEnabled: false,
+                          initialCameraPosition: _initialPosition,
+                          zoomControlsEnabled: false,
+                          onMapCreated: (GoogleMapController controller) {},
+                        ),
                       ),
                       heightBox(.1),
                     ],
@@ -195,13 +233,28 @@ class Gallerybox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(kWidth(.04)),
-      child: Image.network(
-        images[index],
-        height: kHeight(.12),
-        width: kWidth(.28),
-        fit: BoxFit.fill,
+    return GestureDetector(
+      onTap: () {
+        Get.dialog(Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(kWidth(.04)),
+            child: Image.network(
+              images[index],
+              height: kHeight(.4),
+              width: kWidth(.8),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ));
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(kWidth(.04)),
+        child: Image.network(
+          images[index],
+          height: kHeight(.12),
+          width: kWidth(.28),
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }
@@ -225,7 +278,7 @@ class Citybox extends StatelessWidget {
           CustomText(
               text: "Colosseum",
               textStyle: KTextStyles()
-                  .normal(fontSize: 10, fontWeight: FontWeight.w600))
+                  .normal(fontSize: 12, fontWeight: FontWeight.w600))
         ],
       ),
     );

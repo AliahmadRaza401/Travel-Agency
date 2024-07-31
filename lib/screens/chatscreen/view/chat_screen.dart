@@ -89,7 +89,7 @@ class _ChatPageState extends State<ChatPage> {
                           height: Get.height * 0.3,
                         ),
                         Text(
-                          "Ask Anything",
+                          "Ask Me Anything",
                           style: TextStyle(color: Colors.black87),
                         ),
                       ],
@@ -141,7 +141,7 @@ class _ChatPageState extends State<ChatPage> {
                                 hSizedBox(width: 5),
                                 AppText(
                                     text:
-                                        message.role == 'user' ? "" : "Ai Boot",
+                                        message.role == 'user' ? "" : "Ai Bot",
                                     color: Colors.black.withOpacity(0.7),
                                     fontWeight: FontWeight.w600),
                               ],

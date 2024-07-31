@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       heightBox(.02),
                       CustomText(
-                          text: "Categories",
+                          text: "Book Now",
                           textStyle: KTextStyles().normal(
                               fontSize: 16, fontWeight: FontWeight.w600)),
                       heightBox(.02),
@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                       heightBox(.02),
                       CustomText(
-                          text: "Cities",
+                          text: "Travel Guides",
                           textStyle: KTextStyles().normal(
                               fontSize: 16, fontWeight: FontWeight.w600)),
                       heightBox(.02),
@@ -376,7 +376,7 @@ class CategoryBox extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: kHeight(.06),
+          height: kHeight(.08),
           width: kWidth(.15),
           decoration: BoxDecoration(
             boxShadow: [
@@ -388,7 +388,7 @@ class CategoryBox extends StatelessWidget {
           child: Center(
             child: Image.asset(
               img,
-              height: kHeight(.03),
+              height: kHeight(.04),
             ),
           ),
         ),
