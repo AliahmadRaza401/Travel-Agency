@@ -1,3 +1,4 @@
+import 'package:travel_agency/screens/car_rentals/car_rentals_home.dart';
 import 'package:travel_agency/screens/home_screen_controller.dart';
 
 import '../widgets/widgets_imports.dart';
@@ -69,8 +70,9 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                             onTap: () {
-                              Get.toNamed("/hotelhome");
-                              //Get.toNamed("/flightshome");
+                              Get.to(() => CarRentalsHomeScreen());
+                              // Get.toNamed("/hotelhome");
+                              // Get.toNamed("/flightshome");
                             },
                             child: const CategoryBox());
                       },

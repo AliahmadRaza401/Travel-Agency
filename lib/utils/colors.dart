@@ -10,7 +10,7 @@ class KColors {
   static const kGreen = Color(0xff53930b);
   static const kTextColor = Color(0xff393736);
   static const kSubColor = Color(0xff999999);
-
+static const kiconcolor=Color(0xff2B4C59);
   static const noColor = Colors.transparent;
 
   static const MaterialColor primaryColor = MaterialColor(
