@@ -203,6 +203,8 @@ class HomeCityBox extends StatelessWidget {
   }
 }
 
+
+
 class CategoryBox extends StatelessWidget {
   const CategoryBox({
     super.key,

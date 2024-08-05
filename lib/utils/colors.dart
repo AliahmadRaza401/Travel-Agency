@@ -12,7 +12,8 @@ class KColors {
   static const kSubColor = Color(0xff999999);
 static const kiconcolor=Color(0xff2B4C59);
   static const noColor = Colors.transparent;
-
+  static const carboxcolor=Color(0xffF6F6F6);
+static const highgreycolor=Color(0xff988080);
   static const MaterialColor primaryColor = MaterialColor(
     0xfffeee00,
     <int, Color>{
