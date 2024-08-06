@@ -1,3 +1,4 @@
+import 'package:travel_agency/screens/car_rentals/car_rentals_home.dart';
 import 'package:travel_agency/screens/home_screen_controller.dart';
 import 'package:travel_agency/screens/home_screen_modal.dart';
 
@@ -131,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                           GestureDetector(
                               onTap: () {
-                                Get.toNamed("/flightshome");
+                                Get.to(CarRentalsHomeScreen());
                               },
                               child: CategoryBox(
                                 name: categoryList[3]['name'],
