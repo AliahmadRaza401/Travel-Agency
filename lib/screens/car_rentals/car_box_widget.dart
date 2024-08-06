@@ -1,4 +1,5 @@
 import 'package:flexify/flexify.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 // ignore: must_be_immutable
@@ -52,49 +53,46 @@ class CarBox extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CustomText(
-                        text: carprice,
-                        // text: controller.travellingList[index].title.toString(),
-                        textStyle: KTextStyles().normal(
-                            textColor: KColors.kBlack,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600)),
-                    RichText(
-                      text: TextSpan(
-                          text: '/day',
-                          style: KTextStyles().normal(
-                              textColor: KColors.kGrey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500)),
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                ),
+            Container(
+              // height: 250.h,
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CustomText(
+                      text: carprice,
+                      // text: controller.travellingList[index].title.toString(),
+                      textStyle: KTextStyles().normal(
+                          textColor: KColors.kBlack,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600)),
+                  RichText(
+                    text: TextSpan(
+                        text: '/day',
+                        style: KTextStyles().normal(
+                            textColor: KColors.kGrey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500)),
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(right: 14.0, bottom: 10),
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.favorite_outline,
-                      color: KColors.kRed,
-                    ),
-                    Icon(
-                      Icons.arrow_circle_right,
-                      color: KColors.kPrimary,
-                    ),
-                  ],
-                ),
+              padding: EdgeInsets.only(right: 14.0, bottom: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.favorite_outline,
+                    color: KColors.kRed,
+                  ),
+                  Icon(
+                    Icons.arrow_circle_right,
+                    color: KColors.kPrimary,
+                  ),
+                ],
               ),
             )
           ],

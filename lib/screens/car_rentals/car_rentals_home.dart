@@ -155,7 +155,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 GestureDetector(
                   onTap: () {
                     Get.to(() => CarBooknowScreen());
-                    
+
                   },
                   child: CarBox(
                       carimage: AppImages.carlamborghini,
@@ -174,7 +174,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 GestureDetector(
                   onTap: () {
                     Get.to(() => CarBooknowScreen());
-                    
+
                   },
                   child: CarBox(
                       carimage: AppImages.carrangerover,
@@ -184,7 +184,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 GestureDetector(
                   onTap: () {
                     Get.to(() => CarBooknowScreen());
-                    
+
                   },
                   child: CarBox(
                       carimage: AppImages.cartesla,
@@ -194,6 +194,8 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
               ],
             ),
           )
+
+
         ],
       ),
     );
