@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_agency/screens/car_rentals/car_booknow_screen.dart';
 import 'package:travel_agency/screens/car_rentals/car_box_widget.dart';
 import 'package:travel_agency/utils/app_images.dart';
 import 'package:travel_agency/utils/colors.dart';
@@ -137,15 +138,25 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CarBox(
-                    carimage: AppImages.carimgcivi,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CarBooknowScreen());
+                  },
+                  child: CarBox(
+                      carimage: AppImages.carimgcivi,
+                      carname: 'TOYOTA',
+                      carprice: '\$300'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CarBooknowScreen());
                     
-                    carname: 'TOYOTA',
-                    carprice: '\$300'),
-                CarBox(
-                    carimage: AppImages.carlamborghini,
-                    carname: 'LAMBORGHINI',
-                    carprice: '\$550'),
+                  },
+                  child: CarBox(
+                      carimage: AppImages.carlamborghini,
+                      carname: 'LAMBORGHINI',
+                      carprice: '\$550'),
+                ),
               ],
             ),
           ),
@@ -155,14 +166,26 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CarBox(
-                    carimage: AppImages.carrangerover,
-                    carname: 'RANGE ROVER',
-                    carprice: '\$150'),
-                CarBox(
-                    carimage: AppImages.cartesla,
-                    carname: 'TESLA',
-                    carprice: '\$150'),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CarBooknowScreen());
+                    
+                  },
+                  child: CarBox(
+                      carimage: AppImages.carrangerover,
+                      carname: 'RANGE ROVER',
+                      carprice: '\$150'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CarBooknowScreen());
+                    
+                  },
+                  child: CarBox(
+                      carimage: AppImages.cartesla,
+                      carname: 'TESLA',
+                      carprice: '\$150'),
+                ),
               ],
             ),
           )

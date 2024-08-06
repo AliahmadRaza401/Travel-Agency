@@ -1,8 +1,7 @@
 import 'package:flexify/flexify.dart';
-import 'package:travel_agency/screens/car_rentals/car_rentals_home.dart';
-import 'package:travel_agency/utils/app_images.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
+// ignore: must_be_immutable
 class CarBox extends StatelessWidget {
   // final CarRentalsHomeController controller;
   // final int index;

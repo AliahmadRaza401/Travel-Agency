@@ -54,6 +54,7 @@ dependencies:
   pinput: ^3.0.1
   get: ^4.6.1  
   flexify: ^1.0.0 
+  dots_indicator: ^3.0.0
 
   # flutter_avif: ^2.3.0
 
