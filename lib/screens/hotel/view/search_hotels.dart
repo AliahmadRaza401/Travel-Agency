@@ -1,9 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_range_slider_improved/cupertino_range_slider.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class SearchHotels extends StatelessWidget {
   SearchHotels({super.key});
   final TextEditingController searchController = TextEditingController();
+  final List Ratingbox = [
+    {"title": "1"},
+    {"title": "2"},
+    {"title": "3"},
+    {"title": "4"},
+    {"title": "5"},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -166,8 +173,8 @@ class SearchHotels extends StatelessWidget {
                                                     textColor: KColors
                                                         .kTextColor
                                                         .withOpacity(.5))),
-                                            Spacer(),
-                                            Icon(Icons.arrow_drop_down),
+                                            const Spacer(),
+                                            const Icon(Icons.arrow_drop_down),
                                           ],
                                         ),
                                       ),
@@ -178,30 +185,22 @@ class SearchHotels extends StatelessWidget {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       heightBox(.02),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: KColors.kWhite,
-                                          border: Border.all(
-                                              color: KColors.kTextColor
-                                                  .withOpacity(.5)),
-                                          borderRadius: BorderRadius.circular(
-                                              kWidth(.04)),
-                                        ),
-                                        padding: EdgeInsets.all(kWidth(.02)),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomText(
-                                                text: "1",
-                                                textStyle: KTextStyles().normal(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w700,
-                                                    textColor:
-                                                        KColors.kTextColor)),
-                                            Icon(Icons.star),
-                                          ],
-                                        ),
+                                      SizedBox(
+                                        height: kHeight(.06),
+                                        width: kWidth(.9),
+                                        child: ListView.separated(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return RatingBox(
+                                                title: Ratingbox[index]
+                                                    ["title"],
+                                              );
+                                            },
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    widthBox(.02),
+                                            itemCount: 5),
                                       ),
                                       heightBox(.02),
                                       CustomText(
@@ -210,14 +209,26 @@ class SearchHotels extends StatelessWidget {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                       heightBox(.02),
-                                      // DISPLAY PRICE FILTER HERE .... //
+                                      SizedBox(
+                                        width: kWidth(.9),
+                                        child: CupertinoRangeSlider(
+                                          thumbColor: KColors.kPrimary,
+                                          activeColor: KColors.kPrimary,
+                                          minValue: 10,
+                                          maxValue: 40,
+                                          min: 1.0,
+                                          max: 100.0,
+                                          onMinChanged: (minVal) {},
+                                          onMaxChanged: (maxVal) {},
+                                        ),
+                                      ),
                                       heightBox(.02),
                                       CustomText(
                                           text: "\$90-\$350",
                                           textStyle: KTextStyles().normal(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold)),
-                                      Spacer(),
+                                      const Spacer(),
                                       PrimaryButton(
                                         width: .9,
                                         text: "Apply",
@@ -248,14 +259,14 @@ class SearchHotels extends StatelessWidget {
                   width: context.width,
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                             onTap: () {
                               Get.toNamed("/hoteldetail");
                             },
-                            child: RecommendHotelBox());
+                            child: const RecommendHotelBox());
                       },
                       separatorBuilder: (context, index) => widthBox(.06),
                       itemCount: 4),
@@ -273,18 +284,57 @@ class SearchHotels extends StatelessWidget {
                   width: context.width,
                   child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        return BusinessAccommodateBox();
+                        return const BusinessAccommodateBox();
                       },
                       separatorBuilder: (context, index) => widthBox(.06),
                       itemCount: 4),
-                )
+                ),
+                heightBox(.1),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RatingBox extends StatelessWidget {
+  final String title;
+  const RatingBox({
+    super.key,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: kWidth(.16),
+      decoration: BoxDecoration(
+        color: KColors.kWhite,
+        border: Border.all(color: KColors.kTextColor.withOpacity(.5)),
+        borderRadius: BorderRadius.circular(kWidth(.04)),
+      ),
+      padding: EdgeInsets.all(kWidth(.02)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CustomText(
+              text: title,
+              textStyle: KTextStyles().normal(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  textColor: KColors.kTextColor)),
+          widthBox(.02),
+          Icon(
+            Icons.star,
+            size: kHeight(.02),
+            color: Colors.yellow,
+          ),
+        ],
       ),
     );
   }
@@ -353,8 +403,8 @@ class RecommendHotelBox extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
-              Icon(
+              const Spacer(),
+              const Icon(
                 Icons.favorite_outline,
                 color: KColors.kPrimary,
               )
@@ -379,7 +429,7 @@ class RecommendHotelBox extends StatelessWidget {
             ],
           ),
           heightBox(.01),
-          CustomRichText(
+          const CustomRichText(
               focusedColor: KColors.kPrimary,
               focusedFontSize: 10,
               normalFontSize: 10,
@@ -455,8 +505,8 @@ class BusinessAccommodateBox extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
-              Icon(
+              const Spacer(),
+              const Icon(
                 Icons.favorite_outline,
                 color: KColors.kPrimary,
               )
@@ -481,7 +531,7 @@ class BusinessAccommodateBox extends StatelessWidget {
             ],
           ),
           heightBox(.01),
-          CustomRichText(
+          const CustomRichText(
               focusedColor: KColors.kPrimary,
               focusedFontSize: 10,
               normalFontSize: 10,

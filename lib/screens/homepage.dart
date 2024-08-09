@@ -10,10 +10,10 @@ class HomePage extends StatelessWidget {
       Get.put(NavigationController());
 
   final List<Widget> _screens = [
-    HomeScreen(),
+    const HomeScreen(),
     RetrieveBooking(),
     ChatPage(),
-    Settings(),
+    const Settings(),
   ];
 
   HomePage({super.key});

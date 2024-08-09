@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class BookingSummary extends StatelessWidget {
@@ -32,14 +31,14 @@ class BookingSummary extends StatelessWidget {
                           borderRadius: BorderRadius.circular(kWidth(.04)),
                         ),
                         padding: EdgeInsets.all(kWidth(.02)),
-                        child: Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new),
                       ),
                     ),
                     CustomText(
                         text: "Booking Summary",
                         textStyle: KTextStyles()
                             .normal(fontSize: 16, fontWeight: FontWeight.bold)),
-                    Icon(null),
+                    const Icon(null),
                   ],
                 ),
               ),
@@ -84,27 +83,27 @@ class BookingSummary extends StatelessWidget {
                       ],
                     ),
                     heightBox(.06),
-                    TextTile(
+                    const TextTile(
                       title: "Booking Date",
                       subttile: "1-Oct-2023",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Check-in",
                       subttile: "24-Oct-2023",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Check-out",
                       subttile: "26-Oct-2023",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Chcek-out",
                       subttile: "3",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Room(s)",
                       subttile: "1",
                     ),
@@ -113,7 +112,7 @@ class BookingSummary extends StatelessWidget {
                 ),
               ),
               heightBox(.02),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: KColors.kTextColor,
               ),
@@ -122,17 +121,17 @@ class BookingSummary extends StatelessWidget {
                 width: kWidth(.8),
                 child: Column(
                   children: [
-                    TextTile(
+                    const TextTile(
                       title: "Amount",
                       subttile: "\$350 x 2",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Tax",
                       subttile: "\$30",
                     ),
                     heightBox(.01),
-                    TextTile(
+                    const TextTile(
                       title: "Total",
                       subttile: "\$730",
                     ),
@@ -140,7 +139,7 @@ class BookingSummary extends StatelessWidget {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               PrimaryButton(
                 width: .9,
                 text: "Continue To Payment",

@@ -6,7 +6,7 @@ import '../utils/app_loader.dart';
 import '../widgets/widgets_imports.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           cursorErrorColor: KColors.kGrey,
                           controller: searchController,
                           onChanged: (v) {
-                            print('v: ${v}');
+                            print('v: $v');
                             controller.filterCity(v);
                           },
                           style: const TextStyle(color: KColors.kGrey),
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               )),
                           GestureDetector(
                               onTap: () {
-                                Get.to(CarRentalsHomeScreen());
+                                Get.to(const CarRentalsHomeScreen());
                               },
                               child: CategoryBox(
                                 name: categoryList[3]['name'],
@@ -161,9 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       //       itemCount: categoryList.length),
                       // ),
                       controller.favoriteList.isEmpty
-                          ? SizedBox()
+                          ? const SizedBox()
                           : searchController.text.isNotEmpty
-                              ? SizedBox()
+                              ? const SizedBox()
                               : Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,10 +175,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontSize: 16,
                                             fontWeight: FontWeight.w600)),
                                     heightBox(.02),
-                                    Container(
+                                    SizedBox(
                                       height: Get.height * 0.27,
                                       child: ListView.builder(
-                                        physics: ClampingScrollPhysics(),
+                                        physics: const ClampingScrollPhysics(),
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         padding: const EdgeInsets.all(0),
@@ -208,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       heightBox(.02),
                       controller.isLoading.value
                           ? Center(
-                              child: Container(
+                              child: SizedBox(
                                   width: Get.width * 0.1,
                                   child: customLoader()))
                           : searchController.text.isNotEmpty
@@ -370,7 +370,7 @@ class HomeCityBox extends StatelessWidget {
 class CategoryBox extends StatelessWidget {
   String name;
   String img;
-  CategoryBox({required this.name, required this.img});
+  CategoryBox({super.key, required this.name, required this.img});
 
   @override
   Widget build(BuildContext context) {

@@ -20,7 +20,7 @@ class CText extends StatelessWidget {
 
 final TextStyle? style;
   CText({
-    Key? key,
+    super.key,
     required this.text,
     this.color,
     this.style,
@@ -35,7 +35,7 @@ final TextStyle? style;
     
     this.fontFamily,
     this.lineHeight,  this.overflow,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

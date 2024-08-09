@@ -1,10 +1,6 @@
 import 'package:flexify/flexify.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travel_agency/screens/car_rentals/car_box_widget.dart';
 import 'package:travel_agency/utils/app_images.dart';
-import 'package:travel_agency/utils/colors.dart';
-import 'package:travel_agency/utils/custom_text_styles.dart';
-import 'package:travel_agency/widgets/custom_text.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class TrendingCarScreen extends StatefulWidget {

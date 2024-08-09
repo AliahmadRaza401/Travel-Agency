@@ -1,7 +1,4 @@
 import 'package:flexify/flexify.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:travel_agency/utils/app_images.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
@@ -19,7 +16,7 @@ class ThankyouScreen extends StatelessWidget {
                 height: 50.rh,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -27,13 +24,13 @@ class ThankyouScreen extends StatelessWidget {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_back_ios,
                         // color: Color(oxff78D6C7),
                         color: Color(0xff78D6C7),
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.more_vert,
                       color: Color(0xff78D6C7),
                     ),
@@ -46,7 +43,7 @@ class ThankyouScreen extends StatelessWidget {
               Container(
                 width: 106,
                 height: 95,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(
@@ -66,20 +63,20 @@ class ThankyouScreen extends StatelessWidget {
                 height: 300.rh,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 31, right: 31),
+                padding: const EdgeInsets.only(left: 31, right: 31),
                 child: PrimaryButton(
                     text: "Comfirm",
                     color: KColors.kGrey,
                     width: double.infinity,
                     function: () {
-                      Get.to(() => HomeScreen());
+                      Get.to(() => const HomeScreen());
                     }),
               ),
               SizedBox(
                 height: 40.rh,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 31, right: 31),
+                padding: const EdgeInsets.only(left: 31, right: 31),
                 child: PrimaryButton(
                     text: "Go Back",
                     width: double.infinity,

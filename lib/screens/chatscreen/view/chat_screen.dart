@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel_agency/screens/chatscreen/App_SizedBox.dart';
@@ -7,7 +6,6 @@ import 'package:travel_agency/utils/AppTextField.dart';
 import 'package:travel_agency/utils/app_loader.dart';
 import 'package:travel_agency/utils/colors.dart';
 
-import '../controller/chat_controller.dart';
 import '../controller/chat_request.dart';
 import '../controller/chat_service.dart';
 
@@ -28,7 +26,7 @@ class _ChatPageState extends State<ChatPage> {
   final TextEditingController _controller = TextEditingController();
   final ChatService _chatService = ChatService();
   bool _isLoading = false;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   void _sendMessage() async {
     if (_controller.text.isEmpty) return;
@@ -54,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
     }
@@ -88,7 +86,7 @@ class _ChatPageState extends State<ChatPage> {
                           "assets/images/ai_img.jpg",
                           height: Get.height * 0.3,
                         ),
-                        Text(
+                        const Text(
                           "Ask Me Anything",
                           style: TextStyle(color: Colors.black87),
                         ),
@@ -103,10 +101,10 @@ class _ChatPageState extends State<ChatPage> {
                         return ListTile(
                           title: Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 backgroundColor: Colors.transparent,
                                 radius: 14,
-                                backgroundImage: const AssetImage(
+                                backgroundImage: AssetImage(
                                     "assets/images/button.png"),
                               ),
                               hSizedBox(width: 5),
@@ -190,12 +188,12 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                   hSizedBox(),
                   _isLoading
-                      ? Container(width: Get.width * 0.1, child: customLoader())
+                      ? SizedBox(width: Get.width * 0.1, child: customLoader())
                       : GestureDetector(
                           onTap: _sendMessage,
                           child: Container(
                             width: Get.width * 0.1,
-                            padding: EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(right: 10),
                             child: Image.asset(
                               "assets/images/send.png",
                               color: KColors.kPrimary,

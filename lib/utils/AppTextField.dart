@@ -22,7 +22,7 @@ class AppTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   AppTextField({
-    Key? key,
+    super.key,
     this.hint = '',
     required this.controller,
     this.onChanged,
@@ -38,7 +38,7 @@ class AppTextField extends StatefulWidget {
     this.suffixIcon = const SizedBox(),
     this.keyboardType = TextInputType.text,
     this.intialvalue,
-  }) : super(key: key);
+  });
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -53,7 +53,7 @@ class _AppTextFieldState extends State<AppTextField> {
         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: TextFormField(
           controller: widget.controller,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.black,
           ),

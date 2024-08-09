@@ -1,13 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flexify/flexify.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:travel_agency/screens/car_rentals/credit_card_screen.dart';
 import 'package:travel_agency/screens/car_rentals/dot_controller.dart';
 import 'package:travel_agency/utils/app_images.dart';
-import 'package:travel_agency/utils/colors.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class PaymentMethodsScreen extends StatefulWidget {
@@ -33,7 +28,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
               height: 50.rh,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -41,13 +36,13 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back_ios,
                       // color: Color(oxff78D6C7),
                       color: Color(0xff78D6C7),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.more_vert,
                     color: Color(0xff78D6C7),
                   ),
@@ -325,7 +320,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                   text: 'Pay',
                   width: double.infinity,
                   function: () {
-                    Get.to(() => CreditCardScreen());
+                    Get.to(() => const CreditCardScreen());
                   }),
             ),
           ],

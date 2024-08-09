@@ -73,14 +73,14 @@ class HyperTxt extends StatelessWidget {
   Function? onTap;
 
   HyperTxt({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.text,
     this.bold,
     this.align,
     this.size,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -108,13 +108,13 @@ class MultiTxt extends StatelessWidget {
   String secondTextfontFamily;
 
   MultiTxt({
-    Key? key,
+    super.key,
     required this.firstText,
     this.secondText,
     this.firstTextfontFamily = "Light Grold",
     this.secondTextfontFamily = "Light Grold",
     this.firstColor = Colors.black,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

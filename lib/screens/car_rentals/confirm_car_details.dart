@@ -1,7 +1,4 @@
 import 'package:flexify/flexify.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:travel_agency/screens/car_rentals/car_box_widget.dart';
 import 'package:travel_agency/screens/car_rentals/payment_methods.dart';
 import 'package:travel_agency/utils/app_images.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
@@ -82,7 +79,7 @@ class _ConfirmCarDetailsScreenState extends State<ConfirmCarDetailsScreen> {
             ),
             Row(
               children: [
-                Container(
+                SizedBox(
                   width: 213.rw,
                   height: 118.rh,
                   child: Image.asset(AppImages.carrangerover),

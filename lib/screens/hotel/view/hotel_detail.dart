@@ -30,7 +30,7 @@ class HotelDetail extends StatelessWidget {
                         borderRadius: BorderRadius.circular(kWidth(.04)),
                       ),
                       padding: EdgeInsets.all(kWidth(.02)),
-                      child: Icon(Icons.arrow_back_ios_new),
+                      child: const Icon(Icons.arrow_back_ios_new),
                     ),
                   ),
                   CustomText(
@@ -46,7 +46,7 @@ class HotelDetail extends StatelessWidget {
                       borderRadius: BorderRadius.circular(kWidth(.04)),
                     ),
                     padding: EdgeInsets.all(kWidth(.02)),
-                    child: Icon(Icons.more_horiz),
+                    child: const Icon(Icons.more_horiz),
                   ),
                 ],
               ),
@@ -60,7 +60,7 @@ class HotelDetail extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(kWidth(.04)),
-                    child: Align(
+                    child: const Align(
                       alignment: Alignment.topRight,
                       child: CircleAvatar(
                         backgroundColor: KColors.kWhite,
@@ -117,7 +117,7 @@ class HotelDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     decoration: BoxDecoration(
                       color: KColors.kTextColor.withOpacity(.1),
@@ -161,7 +161,7 @@ class HotelDetail extends StatelessWidget {
               heightBox(.02),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.location_on_outlined,
                     color: KColors.kPrimary,
                   ),
@@ -200,7 +200,7 @@ class HotelDetail extends StatelessWidget {
                 width: kWidth(.9),
                 child: ListView.separated(
                     shrinkWrap: true,
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return ClipRRect(

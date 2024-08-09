@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:travel_agency/screens/car_rentals/car_booknow_screen.dart';
 import 'package:travel_agency/screens/car_rentals/car_box_widget.dart';
 import 'package:travel_agency/utils/app_images.dart';
-import 'package:travel_agency/utils/colors.dart';
 import 'package:flexify/flexify.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
@@ -21,12 +18,12 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
       backgroundColor: KColors.kWhite,
       appBar: AppBar(
         leading: Padding(
-          padding: EdgeInsets.only(left: 28.0),
+          padding: const EdgeInsets.only(left: 28.0),
           child: GestureDetector(
             onTap: (){
               Get.offAllNamed('/');
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios,
               color: KColors.kiconcolor,
             ),
@@ -36,7 +33,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 16),
+            margin: const EdgeInsets.only(left: 16),
             height: 158.rh,
             width: 357.rw,
             decoration: BoxDecoration(
@@ -50,7 +47,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
             height: 50.rh,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 28.0, right: 19),
+            padding: const EdgeInsets.only(left: 28.0, right: 19),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -104,7 +101,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 SizedBox(
                     width: 29.rw,
                     height: 27.rh,
-                    child: Icon(
+                    child: const Icon(
                       Icons.search,
                       size: 28,
                       color: KColors.highgreycolor,
@@ -116,7 +113,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
             height: 36.rh,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 32.0, right: 22),
+            padding: const EdgeInsets.only(left: 32.0, right: 22),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -139,13 +136,13 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
           // ),
           heightBox(.02),
           Padding(
-            padding: EdgeInsets.only(left: 30.0, right: 22),
+            padding: const EdgeInsets.only(left: 30.0, right: 22),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => CarBooknowScreen());
+                    Get.to(() => const CarBooknowScreen());
                   },
                   child: CarBox(
                       carimage: AppImages.carimgcivi,
@@ -154,7 +151,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => CarBooknowScreen());
+                    Get.to(() => const CarBooknowScreen());
 
                   },
                   child: CarBox(
@@ -167,13 +164,13 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
           ),
           heightBox(.02),
           Padding(
-            padding: EdgeInsets.only(left: 30.0, right: 22),
+            padding: const EdgeInsets.only(left: 30.0, right: 22),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => CarBooknowScreen());
+                    Get.to(() => const CarBooknowScreen());
 
                   },
                   child: CarBox(
@@ -183,7 +180,7 @@ class _CarRentalsHomeScreenState extends State<CarRentalsHomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => CarBooknowScreen());
+                    Get.to(() => const CarBooknowScreen());
 
                   },
                   child: CarBox(

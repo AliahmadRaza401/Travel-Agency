@@ -1,12 +1,9 @@
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flexify/flexify.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:travel_agency/screens/car_rentals/cart_controller.dart';
 import 'package:travel_agency/screens/car_rentals/confirm_car_details.dart';
 import 'package:travel_agency/screens/car_rentals/trending_car_screen.dart';
-import 'package:travel_agency/utils/colors.dart';
 import 'package:travel_agency/utils/app_images.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 import 'package:travel_agency/screens/car_rentals/dot_controller.dart';
@@ -71,7 +68,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                           // Update the dot position
 
                           dotsController.updatePosition(index);
-                          Get.to(() => TrendingCarScreen());
+                          Get.to(() => const TrendingCarScreen());
                         },
                         child: Row(
                           children: [
@@ -104,7 +101,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                   height: 11.rh,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 21.0),
+                  padding: const EdgeInsets.only(left: 21.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -123,7 +120,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                   height: 18.rh,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 21.0, right: 40),
+                  padding: const EdgeInsets.only(left: 21.0, right: 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -132,7 +129,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                           Container(
                             width: 48.rw,
                             height: 47.rh,
-                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            decoration: const BoxDecoration(shape: BoxShape.circle),
                             child: Image.asset(AppImages.profilepick),
                           ),
                           SizedBox(
@@ -153,7 +150,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                           Container(
                             width: 34.rw,
                             height: 32.rh,
-                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            decoration: const BoxDecoration(shape: BoxShape.circle),
                             child: Image.asset(AppImages.commentsimg),
                           ),
                           SizedBox(
@@ -162,7 +159,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                           Container(
                             width: 23.rw,
                             height: 30.rh,
-                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            decoration: const BoxDecoration(shape: BoxShape.circle),
                             child: Image.asset(AppImages.phoneimg),
                           ),
                         ],
@@ -175,7 +172,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(left: 37.0),
+                  padding: const EdgeInsets.only(left: 37.0),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -240,7 +237,7 @@ class _CarBooknowScreenState extends State<CarBooknowScreen> {
                       PrimaryButton(
                           text: 'BOOK NOW',
                           function: () {
-                            Get.to(() => ConfirmCarDetailsScreen());
+                            Get.to(() => const ConfirmCarDetailsScreen());
                           })
                     ],
                   ),

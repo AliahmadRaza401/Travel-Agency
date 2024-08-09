@@ -12,7 +12,7 @@ class BlogPage extends StatelessWidget {
 
   BlogPage({super.key});
   final Cities? data = Get.arguments;
-  CameraPosition _initialPosition = CameraPosition(
+  final CameraPosition _initialPosition = const CameraPosition(
     target: LatLng(37.77483, -122.41942), // San Francisco
     zoom: 12.0,
   );
@@ -163,7 +163,7 @@ class BlogPage extends StatelessWidget {
                         child: Obx(() {
                           return controller.isLoading.value
                               ? Center(
-                                  child: Container(
+                                  child: SizedBox(
                                       width: Get.width * 0.1,
                                       child: customLoader()))
                               : ListView.separated(

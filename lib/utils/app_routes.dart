@@ -21,7 +21,7 @@ import '../widgets/widgets_imports.dart';
 
 dynamic routes = [
   GetPage(name: '/', page: () => HomePage()),
-  GetPage(name: '/homescreen', page: () => HomeScreen()),
+  GetPage(name: '/homescreen', page: () => const HomeScreen()),
   GetPage(name: '/retrievebooking', page: () => RetrieveBooking()),
   GetPage(name: '/mybooking', page: () => const MyBooking()),
   GetPage(name: '/blogpage', page: () => BlogPage()),
@@ -41,9 +41,9 @@ dynamic routes = [
   // HOTEL //
   GetPage(name: '/hotelhome', page: () => HotelHome()),
   GetPage(name: '/searchhotel', page: () => SearchHotels()),
-  GetPage(name: '/hoteldetail', page: () => HotelDetail()),
-  GetPage(name: '/bookingsummary', page: () => BookingSummary()),
+  GetPage(name: '/hoteldetail', page: () => const HotelDetail()),
+  GetPage(name: '/bookingsummary', page: () => const BookingSummary()),
   GetPage(name: '/hotelpaymentdetails', page: () => HotelPaymentDetails()),
   GetPage(
-      name: '/hotelpaymentsuccessful', page: () => HotelPaymentSuccessful()),
+      name: '/hotelpaymentsuccessful', page: () => const HotelPaymentSuccessful()),
 ];

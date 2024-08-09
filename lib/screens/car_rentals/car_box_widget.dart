@@ -1,5 +1,4 @@
 import 'package:flexify/flexify.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +26,7 @@ class CarBox extends StatelessWidget {
       color: KColors.carboxcolor,
       shadowColor: KColors.kGrey,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.rs)),
-      child: Container(
+      child: SizedBox(
         width: 152.rh,
         height: 169.rh,
         child: Column(

@@ -56,6 +56,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   easy_url_launcher: ^0.0.7
   google_maps_flutter: ^2.2.0
+  cupertino_range_slider_improved: ^2.0.1
  
 
   share_plus: ^10.0.0

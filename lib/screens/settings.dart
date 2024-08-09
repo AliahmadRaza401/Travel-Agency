@@ -5,7 +5,7 @@ import '../widgets/widgets_imports.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Settings extends StatelessWidget {
               height: Get.height * 0.25,
               width: Get.width,
               padding: EdgeInsets.symmetric(horizontal: 30.w),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: KColors.kPrimary,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),

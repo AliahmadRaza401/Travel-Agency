@@ -1,8 +1,6 @@
 import 'package:flexify/flexify.dart';
-import 'package:flutter/widgets.dart';
 import 'package:travel_agency/screens/car_rentals/thankyou_screen.dart';
 import 'package:travel_agency/utils/app_images.dart';
-import 'package:travel_agency/widgets/custom_button.dart';
 import 'package:travel_agency/widgets/widgets_imports.dart';
 
 class CreditCardScreen extends StatefulWidget {
@@ -25,7 +23,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
               height: 50.rh,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -33,13 +31,13 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                     onTap: () {
                       Get.back();
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_back_ios,
                       // color: Color(oxff78D6C7),
                       color: Color(0xff78D6C7),
                     ),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.more_vert,
                     color: Color(0xff78D6C7),
                   ),
@@ -190,7 +188,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                   text: 'Pay',
                   width: double.infinity,
                   function: () {
-                    Get.to(() => ThankyouScreen());
+                    Get.to(() => const ThankyouScreen());
                   }),
             ),
           ],
